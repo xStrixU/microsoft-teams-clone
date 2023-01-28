@@ -1,0 +1,34 @@
+{
+	"name": "microsoft-teams-clone",
+	"private": true,
+	"license": "MIT",
+	"author": "Kacper Polak <strixu155@gmail.com>",
+	"scripts": {
+		"prepare": "husky install",
+		"build": "turbo run build",
+		"dev": "turbo run dev",
+		"lint": "turbo run lint",
+		"lint:fix": "turbo run lint:fix"
+	},
+	"devDependencies": {
+		"@commitlint/cli": "17.4.2",
+		"@commitlint/config-conventional": "17.4.2",
+		"@typescript-eslint/eslint-plugin": "5.49.0",
+		"@typescript-eslint/parser": "5.49.0",
+		"commitlint-plugin-workspace-scopes": "1.1.0",
+		"eslint": "8.32.0",
+		"eslint-config-prettier": "8.6.0",
+		"eslint-plugin-import": "2.27.5",
+		"eslint-plugin-prettier": "4.2.1",
+		"eslint-plugin-simple-import-sort": "10.0.0",
+		"husky": "8.0.3",
+		"lint-staged": "13.1.0",
+		"prettier": "2.8.3",
+		"turbo": "1.7.0"
+	},
+	"engines": {
+		"node": ">=18.0.0 <19",
+		"pnpm": ">=7"
+	},
+	"packageManager": "pnpm@7.26.1"
+}

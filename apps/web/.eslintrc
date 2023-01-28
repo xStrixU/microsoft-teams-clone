@@ -1,0 +1,28 @@
+{
+	"extends": "next/core-web-vitals",
+	"rules": {
+		"simple-import-sort/imports": [
+			"error",
+			{
+				"groups": [
+					// packages
+					["^@?\\w"],
+					// relative paths
+					["^\\."],
+					// imports from public directory
+					["^~/"],
+					// components
+					["^@/components"],
+					// absolute imports like @/hooks, @/lib
+					["^@/"],
+					// package type imports
+					["^(?!@/).+\\u0000$"],
+					// absolute type imports like @/types
+					["^@/.+\\u0000$"],
+					// css and scss files
+					["^.+\\.s?css$"]
+				]
+			}
+		]
+	}
+}

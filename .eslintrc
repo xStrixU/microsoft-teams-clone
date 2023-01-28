@@ -1,0 +1,47 @@
+{
+	"root": true,
+	"plugins": ["@typescript-eslint", "import", "simple-import-sort"],
+	"extends": [
+		"eslint:recommended",
+		"plugin:@typescript-eslint/recommended",
+		"plugin:prettier/recommended"
+	],
+	"parserOptions": {
+		"ecmaVersion": "latest",
+		"sourceType": "module",
+		"project": "tsconfig.json"
+	},
+	"rules": {
+		"@typescript-eslint/consistent-type-imports": "error",
+		"@typescript-eslint/no-unused-vars": [
+			"error",
+			{
+				"argsIgnorePattern": "^_",
+				"varsIgnorePattern": "^_"
+			}
+		],
+		"@typescript-eslint/prefer-optional-chain": "error",
+		"require-await": "error",
+		"import/first": "error",
+		"import/newline-after-import": "error",
+		"import/no-duplicates": "error",
+		"simple-import-sort/exports": "error",
+		"simple-import-sort/imports": [
+			"error",
+			{
+				"groups": [
+					// packages
+					["^@?\\w"],
+					// relative paths
+					["^\\."],
+					// absolute imports
+					["^@/"],
+					// package type imports
+					["^(?!@/).+\\u0000$"],
+					// absolute type imports like @/types
+					["^@/.+\\u0000$"]
+				]
+			}
+		]
+	}
+}
