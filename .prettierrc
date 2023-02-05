@@ -2,5 +2,7 @@
 	"singleQuote": true,
 	"useTabs": true,
 	"arrowParens": "avoid",
-	"printWidth": 100
+	"printWidth": 100,
+	"plugins": ["prettier-plugin-tailwindcss"],
+	"tailwindConfig": "./apps/web/tailwind.config.js"
 }
