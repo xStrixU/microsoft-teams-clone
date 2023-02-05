@@ -1,8 +1,55 @@
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
 	content: ['./src/**/*.{ts,tsx}'],
+	darkMode: 'class',
 	theme: {
-		extend: {},
+		extend: {
+			colors: {
+				brand: {
+					default: 'var(--color-brand)',
+					hover: 'var(--color-brand-hover)',
+					pressed: 'var(--color-brand-pressed)',
+					selected: 'var(--color-brand-selected)',
+				},
+				link: {
+					default: 'var(--color-link)',
+					hover: 'var(--color-link-hover)',
+					pressed: 'var(--color-link-pressed)',
+					selected: 'var(--color-link-selected)',
+				},
+				neutral: {
+					background: {
+						default: 'var(--color-neutral-background)',
+						hover: 'var(--color-neutral-background-hover)',
+						pressed: 'var(--color-neutral-background-pressed)',
+						selected: 'var(--color-neutral-background-selected)',
+					},
+					foreground: 'var(--color-neutral-foreground)',
+					'foreground-inverted': 'var(--color-neutral-foreground-inverted)',
+					stroke: {
+						default: 'var(--color-neutral-stroke)',
+						hover: 'var(--color-neutral-stroke-hover)',
+						pressed: 'var(--color-neutral-stroke-pressed)',
+						selected: 'var(--color-neutral-stroke-selected)',
+						accessible: {
+							default: 'var(--color-neutral-stroke-accessible)',
+							hover: 'var(--color-neutral-stroke-accessible-hover)',
+							pressed: 'var(--color-neutral-stroke-accessible-pressed)',
+							selected: 'var(--color-neutral-stroke-accessible-selected)',
+						},
+					},
+				},
+				red: {
+					foreground: 'var(--color-red-foreground)',
+					border: 'var(--color-red-border)',
+				},
+			},
+			fontFamily: {
+				sans: ['var(--font-noto-sans)', ...defaultTheme.fontFamily.sans],
+			},
+		},
 	},
 	plugins: [],
 };

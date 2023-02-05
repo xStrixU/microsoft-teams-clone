@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+	.clip-path-input-underline {
+		clip-path: inset(calc(100% - 2px) 0px 0px);
+	}
+}

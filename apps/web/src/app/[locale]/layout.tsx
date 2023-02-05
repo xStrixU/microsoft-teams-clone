@@ -1,3 +1,4 @@
+import { Noto_Sans } from '@next/font/google';
 import { notFound } from 'next/navigation';
 import { useLocale } from 'next-intl';
 
@@ -12,6 +13,11 @@ type RootLayoutProps = Readonly<{
 	params: Params<'locale'>;
 }>;
 
+const notoSans = Noto_Sans({
+	weight: ['400', '500', '600', '700'],
+	variable: '--font-noto-sans',
+});
+
 const RootLayout = ({ children, params }: RootLayoutProps) => {
 	const locale = useLocale();
 
@@ -20,7 +26,7 @@ const RootLayout = ({ children, params }: RootLayoutProps) => {
 	}
 
 	return (
-		<html lang={locale}>
+		<html lang={locale} className={notoSans.variable}>
 			<head>
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
