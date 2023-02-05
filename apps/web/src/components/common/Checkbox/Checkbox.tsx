@@ -17,12 +17,12 @@ type CheckboxProps = Readonly<{
 
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
 	({ size = 'medium', label, ...props }, ref) => (
-		<label className="flex items-center gap-1.5 w-fit cursor-pointer group select-none text-sm text-neutral-stroke-accessible-hover">
+		<label className="group flex w-fit cursor-pointer select-none items-center gap-1.5 text-sm text-neutral-stroke-accessible-hover">
 			<label>
 				<input ref={ref} type="checkbox" className="peer hidden" {...props} />
 				<div
 					className={twMerge(
-						'rounded-sm border cursor-pointer border-neutral-stroke-accessible-default flex items-center justify-center text-neutral-foreground-inverted [&>svg]:hidden peer-checked:border-none peer-checked:bg-brand-default group-hover:peer-checked:bg-brand-hover peer-checked:[&>svg]:block',
+						'flex cursor-pointer items-center justify-center rounded-sm border border-neutral-stroke-accessible-default text-neutral-foreground-inverted peer-checked:border-none peer-checked:bg-brand-default group-hover:peer-checked:bg-brand-hover [&>svg]:hidden peer-checked:[&>svg]:block',
 						sizes[size]
 					)}
 				>
