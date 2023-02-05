@@ -1,5 +1,31 @@
 {
 	"IndexPage": {
 		"content": "Strona Główna"
+	},
+	"entryForms": {
+		"common": {
+			"email": "Email",
+			"firstName": "Imię",
+			"lastName": "Nazwisko",
+			"password": "Hasło",
+			"confirmPassword": "Powtórz hasło",
+			"signIn": "Zaloguj się",
+			"signUp": "Zarejestruj się"
+		},
+		"schema": {
+			"passwordsDoNotMatch": "Hasła nie są takie same"
+		},
+		"SignInForm": {
+			"title": "Zaloguj się do swojego konta",
+			"bottomSection": "Nie masz konta?"
+		},
+		"SignUpForm": {
+			"title": "Stwórz konto",
+			"bottomSection": "Masz już konto?"
+		}
+	},
+	"schema": {
+		"required": "To pole jest wymagane",
+		"invalidEmail": "Niepoprawny adres email"
 	}
 }

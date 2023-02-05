@@ -1,5 +1,31 @@
 {
 	"IndexPage": {
 		"content": "Index Page"
+	},
+	"entryForms": {
+		"common": {
+			"email": "Email",
+			"firstName": "First name",
+			"lastName": "Last name",
+			"password": "Password",
+			"confirmPassword": "Confirm password",
+			"signIn": "Sign In",
+			"signUp": "Sign Up"
+		},
+		"schema": {
+			"passwordsDoNotMatch": "Passwords do not match"
+		},
+		"SignInForm": {
+			"title": "Log in to your account",
+			"bottomSection": "Don't have an account?"
+		},
+		"SignUpForm": {
+			"title": "Create an account",
+			"bottomSection": "Already have an account?"
+		}
+	},
+	"schema": {
+		"required": "This field is required",
+		"invalidEmail": "Invalid email"
 	}
 }
