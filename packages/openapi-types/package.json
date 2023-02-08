@@ -1,0 +1,17 @@
+{
+	"name": "openapi-types",
+	"version": "0.0.0",
+	"private": true,
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"scripts": {
+		"build": "tsc",
+		"generate": "dotenv -- cross-var openapi-typescript %SWAGGER_URL% --output ./src/types.ts"
+	},
+	"devDependencies": {
+		"cross-var": "1.1.0",
+		"dotenv-cli": "7.0.0",
+		"openapi-typescript": "6.1.0",
+		"typescript": "4.9.4"
+	}
+}
