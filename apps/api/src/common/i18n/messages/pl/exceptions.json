@@ -1,0 +1,8 @@
+{
+	"auth": {
+		"invalidEmailOrPassword": "Niepoprawny email lub hasło"
+	},
+	"users": {
+		"emailIsAlreadyRegistered": "Ten email jest już zarejestrowany"
+	}
+}

@@ -10,6 +10,7 @@ export default defineConfig({
 	},
 	test: {
 		include: ['**/*.e2e-spec.ts'],
+		threads: false,
 	},
 	plugins: [swc.vite()],
 });
