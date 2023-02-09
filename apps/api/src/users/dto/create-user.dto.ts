@@ -1,4 +1,5 @@
-import { IsEmail, IsNotEmpty } from 'class-validator';
+import { IsEmail, IsNotEmpty, Matches } from 'class-validator';
+import { USER_PASSWORD_REGEX } from 'common';
 
 export class CreateUserDto {
 	@IsNotEmpty()
@@ -11,5 +12,8 @@ export class CreateUserDto {
 	email: string;
 
 	@IsNotEmpty()
+	@Matches(USER_PASSWORD_REGEX, {
+		message: 'Password must be at least 5 characters long',
+	})
 	password: string;
 }

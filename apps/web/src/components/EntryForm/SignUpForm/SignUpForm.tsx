@@ -1,5 +1,7 @@
 'use client';
 
+import { useLocalizedRouter } from 'next-intl/client';
+import toast from 'react-hot-toast';
 import { BiUser } from 'react-icons/bi';
 import { HiOutlineLockClosed } from 'react-icons/hi';
 import { MdAlternateEmail } from 'react-icons/md';
@@ -10,7 +12,10 @@ import { Button } from '@/components/common/Button/Button';
 import { Input } from '@/components/common/Inputs/Input/Input';
 import { PasswordInput } from '@/components/common/Inputs/PasswordInput/PasswordInput';
 
+import { useUser } from '@/hooks/useUser';
 import { useYupForm } from '@/hooks/useYupForm';
+import { SIGN_IN_PATH } from '@/lib/paths';
+import { createUser } from '@/services/users.service';
 
 import type { SignUpFormSchemaMessages } from './SignUpForm.schema';
 
@@ -22,14 +27,36 @@ type SignUpFormProps = Readonly<{
 		password: string;
 		confirmPassword: string;
 		signUp: string;
+		signedUp: string;
 		schema: SignUpFormSchemaMessages;
 	};
 }>;
 
 export const SignUpForm = ({ messages }: SignUpFormProps) => {
-	const { onSubmit, register } = useYupForm(createSignUpFormSchema(messages.schema), data => {
-		console.log(data);
-	});
+	const router = useLocalizedRouter();
+	const { register: registerUser } = useUser();
+	const { onSubmit, register, setError } = useYupForm(
+		createSignUpFormSchema(messages.schema),
+		data => {
+			registerUser.mutate(data, {
+				onSuccess: () => {
+					toast.success(messages.signedUp);
+					router.push(SIGN_IN_PATH);
+				},
+				onError: err => {
+					if (err instanceof createUser.Error) {
+						const error = err.getActualType();
+
+						if (error.status === 409) {
+							const { message } = error.data;
+
+							setError('email', { message });
+						}
+					}
+				},
+			});
+		}
+	);
 
 	return (
 		<form onSubmit={onSubmit} className="flex flex-col gap-4">

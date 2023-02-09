@@ -21,11 +21,13 @@
 		},
 		"SignUpForm": {
 			"title": "Create an account",
-			"bottomSection": "Already have an account?"
+			"bottomSection": "Already have an account?",
+			"signedUp": "Signed up successfully"
 		}
 	},
 	"schema": {
 		"required": "This field is required",
-		"invalidEmail": "Invalid email"
+		"invalidEmail": "Invalid email",
+		"invalidPassword": "Password must be at least 5 characters long"
 	}
 }

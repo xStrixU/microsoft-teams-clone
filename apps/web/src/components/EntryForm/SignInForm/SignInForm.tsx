@@ -9,7 +9,9 @@ import { Button } from '@/components/common/Button/Button';
 import { Input } from '@/components/common/Inputs/Input/Input';
 import { PasswordInput } from '@/components/common/Inputs/PasswordInput/PasswordInput';
 
+import { useUser } from '@/hooks/useUser';
 import { useYupForm } from '@/hooks/useYupForm';
+import { createSession } from '@/services/sessions.service';
 
 import type { SignInFormSchemaMessages } from './SignInForm.schema';
 
@@ -23,9 +25,26 @@ type SignInFormProps = Readonly<{
 }>;
 
 export const SignInForm = ({ messages }: SignInFormProps) => {
-	const { onSubmit, register } = useYupForm(createSignInFormSchema(messages.schema), data => {
-		console.log(data);
-	});
+	const { login } = useUser();
+	const { onSubmit, register, setError } = useYupForm(
+		createSignInFormSchema(messages.schema),
+		data => {
+			login.mutate(data, {
+				onError: err => {
+					if (err instanceof createSession.Error) {
+						const error = err.getActualType();
+
+						if (error.status === 401) {
+							const { message } = error.data;
+
+							setError('email', { message });
+							setError('password', { message });
+						}
+					}
+				},
+			});
+		}
+	);
 
 	return (
 		<form onSubmit={onSubmit} className="flex flex-col gap-4">
