@@ -2,6 +2,10 @@ import { Noto_Sans } from '@next/font/google';
 import { notFound } from 'next/navigation';
 import { useLocale } from 'next-intl';
 
+import { ClientToaster } from '@/components/ClientToaster';
+
+import { AppProviders } from '@/providers/AppProviders';
+
 import type { ReactNode } from 'react';
 
 import type { Params } from '@/types';
@@ -34,7 +38,10 @@ const RootLayout = ({ children, params }: RootLayoutProps) => {
 				<link rel="icon" type="image/png" sizes="96x96" href="/favicons/favicon-96x96.png" />
 				<link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico" />
 			</head>
-			<body>{children}</body>
+			<body>
+				<AppProviders>{children}</AppProviders>
+				<ClientToaster />
+			</body>
 		</html>
 	);
 };

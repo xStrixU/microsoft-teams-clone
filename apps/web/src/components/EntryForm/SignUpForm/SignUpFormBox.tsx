@@ -28,9 +28,11 @@ export const SignUpFormBox = () => {
 					password: t('common.password'),
 					confirmPassword: t('common.confirmPassword'),
 					signUp: t('common.signUp'),
+					signedUp: t('SignUpForm.signedUp'),
 					schema: {
 						required: tSchema('required'),
 						invalidEmail: tSchema('invalidEmail'),
+						invalidPassword: tSchema('invalidPassword'),
 						passwordsDoNotMatch: t('schema.passwordsDoNotMatch'),
 					},
 				}}

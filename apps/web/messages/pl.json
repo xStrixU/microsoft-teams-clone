@@ -21,11 +21,13 @@
 		},
 		"SignUpForm": {
 			"title": "Stwórz konto",
-			"bottomSection": "Masz już konto?"
+			"bottomSection": "Masz już konto?",
+			"signedUp": "Zarejestrowano pomyślnie"
 		}
 	},
 	"schema": {
 		"required": "To pole jest wymagane",
-		"invalidEmail": "Niepoprawny adres email"
+		"invalidEmail": "Niepoprawny adres email",
+		"invalidPassword": "Hasło musi mieć co najmniej 5 znaków długości"
 	}
 }
