@@ -3,6 +3,7 @@
 	"version": "0.0.0",
 	"private": true,
 	"scripts": {
+		"postinstall": "prisma generate",
 		"build": "nest build",
 		"format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
 		"dev": "concurrently --kill-others-on-fail \"pnpm dev:db:start\" \"pnpm start:dev\"",
