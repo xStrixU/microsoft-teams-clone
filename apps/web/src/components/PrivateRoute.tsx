@@ -1,6 +1,6 @@
 'use client';
 
-import { useRouter } from 'next-intl/client';
+import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
 import MicrosoftLogo from '~/images/microsoft-logo.svg';

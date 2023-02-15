@@ -1,28 +1,20 @@
-import { USER_PASSWORD_REGEX } from 'common';
+import { USER_PASSWORD_REGEX, USER_PASSWORD_REGEX_MESSAGE } from 'common';
 import * as yup from 'yup';
 
-export interface SignUpFormSchemaMessages {
-	required: string;
-	invalidEmail: string;
-	invalidPassword: string;
-	passwordsDoNotMatch: string;
-}
+import { SCHEMA_REQUIRED_MESSAGE } from '@/lib/constants';
 
-export const createSignUpFormSchema = ({
-	required,
-	invalidEmail,
-	invalidPassword,
-	passwordsDoNotMatch,
-}: SignUpFormSchemaMessages) =>
-	yup
-		.object({
-			firstName: yup.string().required(required),
-			lastName: yup.string().required(required),
-			email: yup.string().email(invalidEmail).required(required),
-			password: yup.string().required(required).matches(USER_PASSWORD_REGEX, invalidPassword),
-			confirmPassword: yup
-				.string()
-				.oneOf([yup.ref('password')], passwordsDoNotMatch)
-				.required(required),
-		})
-		.required();
+export const signUpFormSchema = yup
+	.object({
+		firstName: yup.string().required(SCHEMA_REQUIRED_MESSAGE),
+		lastName: yup.string().required(SCHEMA_REQUIRED_MESSAGE),
+		email: yup.string().email('Invalid email').required(SCHEMA_REQUIRED_MESSAGE),
+		password: yup
+			.string()
+			.required(SCHEMA_REQUIRED_MESSAGE)
+			.matches(USER_PASSWORD_REGEX, USER_PASSWORD_REGEX_MESSAGE),
+		confirmPassword: yup
+			.string()
+			.oneOf([yup.ref('password')], 'Passwords do not match')
+			.required(SCHEMA_REQUIRED_MESSAGE),
+	})
+	.required();

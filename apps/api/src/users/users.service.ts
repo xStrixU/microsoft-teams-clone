@@ -10,8 +10,6 @@ import { isPrismaError } from '@/database/prisma/prisma.utils';
 import type { CreateUserDto } from './dto/create-user.dto';
 import type { Prisma, User } from '@prisma/client';
 
-import type { AppI18nContext } from '@/common/i18n/i18n.types';
-
 @Injectable()
 export class UsersService {
 	constructor(
@@ -19,10 +17,7 @@ export class UsersService {
 		private readonly prisma: PrismaService
 	) {}
 
-	async create(
-		{ firstName, lastName, email, password }: CreateUserDto,
-		i18n: AppI18nContext
-	): Promise<User> {
+	async create({ firstName, lastName, email, password }: CreateUserDto): Promise<User> {
 		const hashedPassword = await this.hashPassword(password);
 
 		try {
@@ -38,7 +33,7 @@ export class UsersService {
 			return user;
 		} catch (err) {
 			if (isPrismaError(err) && err.code === PrismaErrorCode.UniqueKeyViolation) {
-				throw new ConflictException(i18n.t('exceptions.users.emailIsAlreadyRegistered'));
+				throw new ConflictException('Email is already registered');
 			}
 
 			throw err;
