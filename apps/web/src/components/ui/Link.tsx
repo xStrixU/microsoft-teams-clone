@@ -1,4 +1,4 @@
-import { LocalizedLink } from 'next-intl';
+import { Link as LocalizedLink } from 'next-intl';
 import { twMerge } from 'tailwind-merge';
 
 import type { ComponentProps } from 'react';

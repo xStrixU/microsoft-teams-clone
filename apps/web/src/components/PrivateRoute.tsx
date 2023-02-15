@@ -1,7 +1,10 @@
 'use client';
 
-import { useLocalizedRouter } from 'next-intl/client';
+import { useRouter } from 'next-intl/client';
 import { useEffect } from 'react';
+
+import MicrosoftLogo from '~/images/microsoft-logo.svg';
+import TeamsLogo from '~/images/teams-logo.svg';
 
 import { useUser } from '@/hooks/useUser';
 import { INDEX_PATH, SIGN_IN_PATH } from '@/lib/paths';
@@ -14,7 +17,7 @@ type PrivateRouteProps = Readonly<{
 }>;
 
 export const PrivateRoute = ({ loggedIn = true, children }: PrivateRouteProps) => {
-	const router = useLocalizedRouter();
+	const router = useRouter();
 	const { isLoading, user } = useUser();
 
 	useEffect(() => {
@@ -24,7 +27,12 @@ export const PrivateRoute = ({ loggedIn = true, children }: PrivateRouteProps) =
 	}, [isLoading, loggedIn, router, user]);
 
 	if (isLoading || loggedIn !== Boolean(user)) {
-		return null;
+		return (
+			<main className="flex h-full flex-col items-center justify-center">
+				<TeamsLogo className="h-40 w-40" />
+				<MicrosoftLogo className="mt-2" />
+			</main>
+		);
 	}
 
 	return <>{children}</>;

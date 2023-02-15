@@ -1,11 +1,12 @@
 import { Noto_Sans } from '@next/font/google';
 import { notFound } from 'next/navigation';
-import { useLocale } from 'next-intl';
 
 import { ClientToaster } from '@/components/ClientToaster';
 
+import { locales } from '@/i18n';
 import { AppProviders } from '@/providers/AppProviders';
 
+import type { AbstractIntlMessages } from 'next-intl';
 import type { ReactNode } from 'react';
 
 import type { Params } from '@/types';
@@ -22,10 +23,14 @@ const notoSans = Noto_Sans({
 	variable: '--font-noto-sans',
 });
 
-const RootLayout = ({ children, params }: RootLayoutProps) => {
-	const locale = useLocale();
+export const generateStaticParams = () => locales.map(locale => ({ locale }));
 
-	if (locale !== params.locale) {
+const RootLayout = async ({ children, params: { locale } }: RootLayoutProps) => {
+	let messages: AbstractIntlMessages;
+
+	try {
+		messages = (await import(`messages/${locale}.json`)).default;
+	} catch (err) {
 		notFound();
 	}
 
@@ -39,7 +44,9 @@ const RootLayout = ({ children, params }: RootLayoutProps) => {
 				<link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico" />
 			</head>
 			<body>
-				<AppProviders>{children}</AppProviders>
+				<AppProviders locale={locale} messages={messages}>
+					{children}
+				</AppProviders>
 				<ClientToaster />
 			</body>
 		</html>

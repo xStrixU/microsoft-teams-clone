@@ -4,8 +4,13 @@
 	--color-neutral-background-pressed: #e0e0e0;
 	--color-neutral-background-selected: #ebebeb;
 
+	--color-neutral-background-5: #ebebeb;
+
 	--color-neutral-foreground: #242424;
 	--color-neutral-foreground-inverted: #fff;
+
+	--color-neutral-foreground-2: #424242;
+	--color-neutral-foreground-2-action: #242424;
 
 	--color-neutral-stroke: #d1d1d1;
 	--color-neutral-stroke-hover: #c7c7c7;
@@ -37,8 +42,13 @@
 	--color-neutral-background-pressed: #1f1f1f;
 	--color-neutral-background-selected: #383838;
 
+	--color-neutral-background-5: #0a0a0a;
+
 	--color-neutral-foreground: #fff;
 	--color-neutral-foreground-inverted: #242424;
+
+	--color-neutral-foreground-2: #d6d6d6;
+	--color-neutral-foreground-2-action: #fff;
 
 	--color-neutral-stroke: #666666;
 	--color-neutral-stroke-hover: #757575;

@@ -5,3 +5,7 @@ html,
 body {
 	@apply h-full;
 }
+
+.icon-filled {
+	display: none;
+}
