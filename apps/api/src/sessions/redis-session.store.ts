@@ -36,12 +36,15 @@ export class RedisSessionStore extends Store {
 
 		this.redis
 			.set(`${PREFIX}${sessionId}`, serializedSession, { PX: ttl })
-			.then(callback)
+			.then(() => callback?.())
 			.catch(callback);
 	}
 
 	destroy(sessionId: string, callback?: ((err?: any) => void) | undefined): void {
-		this.redis.del(`${PREFIX}${sessionId}`).then(callback).catch(callback);
+		this.redis
+			.del(`${PREFIX}${sessionId}`)
+			.then(() => callback?.())
+			.catch(callback);
 	}
 
 	async all(
@@ -70,7 +73,10 @@ export class RedisSessionStore extends Store {
 	async clear(callback?: (err?: any) => void): Promise<void> {
 		const keys = await this.getAllSessionKeys();
 
-		this.redis.del(keys).then(callback).catch(callback);
+		this.redis
+			.del(keys)
+			.then(() => callback?.())
+			.catch(callback);
 	}
 
 	touch(sessionId: string, session: SessionData, callback?: () => void): void {
