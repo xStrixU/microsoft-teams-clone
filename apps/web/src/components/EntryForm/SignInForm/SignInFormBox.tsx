@@ -3,7 +3,7 @@ import { useTranslations } from 'next-intl';
 import { EntryFormBox } from '../EntryFormBox';
 import { SignInForm } from './SignInForm';
 
-import { Link } from '@/components/common/Link';
+import { Link } from '@/components/ui/Link';
 
 import { SIGN_UP_PATH } from '@/lib/paths';
 

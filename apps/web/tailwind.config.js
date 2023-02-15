@@ -25,9 +25,14 @@ module.exports = {
 						hover: 'var(--color-neutral-background-hover)',
 						pressed: 'var(--color-neutral-background-pressed)',
 						selected: 'var(--color-neutral-background-selected)',
+						5: 'var(--color-neutral-background-5)',
 					},
 					foreground: 'var(--color-neutral-foreground)',
 					'foreground-inverted': 'var(--color-neutral-foreground-inverted)',
+					'foreground-2': {
+						default: 'var(--color-neutral-foreground-2)',
+						action: 'var(--color-neutral-foreground-2-action)',
+					},
 					stroke: {
 						default: 'var(--color-neutral-stroke)',
 						hover: 'var(--color-neutral-stroke-hover)',

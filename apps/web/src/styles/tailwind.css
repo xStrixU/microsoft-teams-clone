@@ -6,4 +6,12 @@
 	.clip-path-input-underline {
 		clip-path: inset(calc(100% - 2px) 0px 0px);
 	}
+
+	.fill-icon .icon-filled {
+		display: block;
+	}
+
+	.fill-icon .icon-unfilled {
+		display: none;
+	}
 }

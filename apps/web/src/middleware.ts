@@ -1,6 +1,11 @@
-import { createIntlMiddleware } from 'next-intl/server';
+import createIntlMiddleware from 'next-intl/middleware';
 
-export default createIntlMiddleware();
+import { defaultLocale, locales } from './i18n';
+
+export default createIntlMiddleware({
+	locales,
+	defaultLocale,
+});
 
 export const config = {
 	matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],

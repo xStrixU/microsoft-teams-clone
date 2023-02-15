@@ -5,9 +5,9 @@ import { MdAlternateEmail } from 'react-icons/md';
 
 import { createSignInFormSchema } from './SignInForm.schema';
 
-import { Button } from '@/components/common/Button/Button';
-import { Input } from '@/components/common/Inputs/Input/Input';
-import { PasswordInput } from '@/components/common/Inputs/PasswordInput/PasswordInput';
+import { Button } from '@/components/ui/Button/Button';
+import { Input } from '@/components/ui/Inputs/Input/Input';
+import { PasswordInput } from '@/components/ui/Inputs/PasswordInput/PasswordInput';
 
 import { useUser } from '@/hooks/useUser';
 import { useYupForm } from '@/hooks/useYupForm';
