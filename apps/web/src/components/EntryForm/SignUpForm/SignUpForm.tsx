@@ -1,12 +1,12 @@
 'use client';
 
-import { useRouter } from 'next-intl/client';
+import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
 import { BiUser } from 'react-icons/bi';
 import { HiOutlineLockClosed } from 'react-icons/hi';
 import { MdAlternateEmail } from 'react-icons/md';
 
-import { createSignUpFormSchema } from './SignUpForm.schema';
+import { signUpFormSchema } from './SignUpForm.schema';
 
 import { Button } from '@/components/ui/Button/Button';
 import { Input } from '@/components/ui/Inputs/Input/Input';
@@ -17,84 +17,66 @@ import { useYupForm } from '@/hooks/useYupForm';
 import { SIGN_IN_PATH } from '@/lib/paths';
 import { createUser } from '@/services/users.service';
 
-import type { SignUpFormSchemaMessages } from './SignUpForm.schema';
-
-type SignUpFormProps = Readonly<{
-	messages: {
-		firstName: string;
-		lastName: string;
-		email: string;
-		password: string;
-		confirmPassword: string;
-		signUp: string;
-		signedUp: string;
-		schema: SignUpFormSchemaMessages;
-	};
-}>;
-
-export const SignUpForm = ({ messages }: SignUpFormProps) => {
+export const SignUpForm = () => {
 	const router = useRouter();
 	const { register: registerUser } = useUser();
-	const { onSubmit, register, setError } = useYupForm(
-		createSignUpFormSchema(messages.schema),
-		data => {
-			registerUser.mutate(data, {
-				onSuccess: () => {
-					toast.success(messages.signedUp);
-					router.push(SIGN_IN_PATH);
-				},
-				onError: err => {
-					if (err instanceof createUser.Error) {
-						const error = err.getActualType();
+	const { onSubmit, register, setError } = useYupForm(signUpFormSchema, data => {
+		registerUser.mutate(data, {
+			onSuccess: () => {
+				toast.success('Signed up successfully');
+				router.push(SIGN_IN_PATH);
+			},
+			onError: err => {
+				if (err instanceof createUser.Error) {
+					const error = err.getActualType();
 
-						if (error.status === 409) {
-							const { message } = error.data;
+					if (error.status === 409) {
+						const { message } = error.data;
 
-							setError('email', { message });
-						}
+						setError('email', { message });
 					}
-				},
-			});
-		}
-	);
+				}
+			},
+		});
+	});
 
 	return (
 		<form onSubmit={onSubmit} className="flex flex-col gap-4">
 			<Input
 				type="text"
-				label={messages.firstName}
+				label="First name"
 				contentBefore={<BiUser size={18} />}
 				required
 				{...register('firstName')}
 			/>
 			<Input
 				type="text"
-				label={messages.lastName}
+				label="Last name"
 				contentBefore={<BiUser size={18} />}
 				required
 				{...register('lastName')}
 			/>
 			<Input
 				type="email"
-				label={messages.email}
+				label="Email"
 				contentBefore={<MdAlternateEmail size={18} />}
 				required
 				{...register('email')}
 			/>
 			<PasswordInput
-				label={messages.password}
+				label="Password"
 				contentBefore={<HiOutlineLockClosed size={18} />}
 				required
 				{...register('password')}
 			/>
 			<PasswordInput
-				label={messages.confirmPassword}
+				label="Confirm password"
 				contentBefore={<HiOutlineLockClosed size={18} />}
 				required
 				{...register('confirmPassword')}
 			/>
 			<Button type="submit" appearance="primary" fill className="mt-3">
-				{messages.signUp}
+				Sign Up
 			</Button>
 		</form>
 	);

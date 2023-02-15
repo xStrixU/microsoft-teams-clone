@@ -1,8 +1,5 @@
-import nextIntlPlugin from 'next-intl/plugin';
-
-const withNextIntl = nextIntlPlugin();
-
-export default withNextIntl({
+/** @type {import('next').NextConfig} */
+const nextConfig = {
 	experimental: {
 		appDir: true,
 		fontLoaders: [
@@ -12,6 +9,13 @@ export default withNextIntl({
 			},
 		],
 	},
+	redirects: async () => [
+		{
+			source: '/',
+			destination: '/teams',
+			permanent: false,
+		},
+	],
 	webpack: config => {
 		config.module.rules.push({
 			test: /\.svg$/,
@@ -20,4 +24,6 @@ export default withNextIntl({
 
 		return config;
 	},
-});
+};
+
+module.exports = nextConfig;

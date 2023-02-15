@@ -1,7 +1,7 @@
 'use client';
 
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Link, useLocale } from 'next-intl';
 import { twMerge } from 'tailwind-merge';
 
 import type { ComponentProps } from 'react';
@@ -19,11 +19,9 @@ export const ActiveLink = ({
 	exact = false,
 	...props
 }: ActiveLinkProps) => {
-	const locale = useLocale();
 	const pathname = usePathname();
-	const localeHref = `/${locale}${href.toString()}`;
 
-	const isActive = exact ? pathname === localeHref : pathname?.startsWith(localeHref);
+	const isActive = exact ? pathname === href.toString() : pathname?.startsWith(href.toString());
 
 	return (
 		<Link href={href} className={twMerge(className, isActive && activeClassName)} {...props} />

@@ -1,13 +1,10 @@
 import * as yup from 'yup';
 
-export interface SignInFormSchemaMessages {
-	required: string;
-}
+import { SCHEMA_REQUIRED_MESSAGE } from '@/lib/constants';
 
-export const createSignInFormSchema = ({ required }: SignInFormSchemaMessages) =>
-	yup
-		.object({
-			email: yup.string().required(required),
-			password: yup.string().required(required),
-		})
-		.required();
+export const signInFormSchema = yup
+	.object({
+		email: yup.string().required(SCHEMA_REQUIRED_MESSAGE),
+		password: yup.string().required(SCHEMA_REQUIRED_MESSAGE),
+	})
+	.required();
