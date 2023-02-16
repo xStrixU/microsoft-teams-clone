@@ -11,12 +11,12 @@ import { User } from '@prisma/client';
 import { Response } from 'express';
 import { Session as ExpressSession } from 'express-session';
 
-import { Auth } from './auth/auth.decorator';
-import { AuthUser } from './auth/auth-user.decorator';
 import { CreateSessionDto } from './dto/create-session.dto';
 import { SESSION_COOKIE_NAME } from './sessions.constants';
 import { SessionsService } from './sessions.service';
 
+import { Auth } from '@/auth/auth.decorator';
+import { AuthUser } from '@/auth/auth-user.decorator';
 import { OpenAPIHttpException } from '@/common/openapi/openapi-http-exception';
 import { UserDto } from '@/users/dto/user.dto';
 import { mapUserToUserDto } from '@/users/users.mapper';

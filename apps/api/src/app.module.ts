@@ -2,8 +2,10 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 
 import { CONFIG_VALIDATION_SCHEMA } from './app.constants';
+import { AuthModule } from './auth/auth.module';
 import { DatabaseModule } from './database/database.module';
 import { SessionsModule } from './sessions/sessions.module';
+import { TeamsModule } from './teams/teams.module';
 import { UsersModule } from './users/users.module';
 
 @Module({
@@ -27,8 +29,10 @@ import { UsersModule } from './users/users.module';
 			},
 		}),
 		DatabaseModule,
+		AuthModule,
 		UsersModule,
 		SessionsModule,
+		TeamsModule,
 	],
 })
 export class AppModule {}

@@ -8,11 +8,38 @@ generator client {
 }
 
 model User {
-  id        Int    @id @default(autoincrement())
-  firstName String @map("first_name")
-  lastName  String @map("last_name")
-  email     String @unique
+  id        Int          @id @default(autoincrement())
+  firstName String       @map("first_name")
+  lastName  String       @map("last_name")
+  email     String       @unique
   password  String
+  members   TeamMember[]
 
   @@map("user")
+}
+
+model Team {
+  id          Int          @id @default(autoincrement())
+  name        String
+  description String
+  members     TeamMember[]
+
+  @@map("team")
+}
+
+model TeamMember {
+  memberId Int            @map("member_id")
+  teamId   Int            @map("team_id")
+  role     TeamMemberRole
+  member   User           @relation(fields: [memberId], references: [id])
+  team     Team           @relation(fields: [teamId], references: [id])
+
+  @@unique([memberId, teamId])
+  @@map("team_member")
+}
+
+enum TeamMemberRole {
+  OWNER
+  MEMBER
+  GUEST
 }

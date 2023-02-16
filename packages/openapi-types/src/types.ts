@@ -7,6 +7,12 @@ export interface paths {
 	'/users': {
 		post: operations['UsersController_create'];
 	};
+	'/users/me/teams': {
+		get: operations['UsersController_findAllTeams'];
+	};
+	'/teams': {
+		post: operations['TeamsController_create'];
+	};
 	'/sessions': {
 		post: operations['SessionsController_create'];
 	};
@@ -36,6 +42,15 @@ export interface components {
 			statusCode: number;
 			message: string;
 			error: string;
+		};
+		TeamDto: {
+			id: number;
+			name: string;
+			description: string;
+		};
+		CreateTeamDto: {
+			name: string;
+			description: string;
 		};
 		CreateSessionDto: {
 			email: string;
@@ -69,6 +84,31 @@ export interface operations {
 			409: {
 				content: {
 					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
+		};
+	};
+	UsersController_findAllTeams: {
+		responses: {
+			/** @description Returns a list of the current user's teams */
+			200: {
+				content: {
+					'application/json': components['schemas']['TeamDto'];
+				};
+			};
+		};
+	};
+	TeamsController_create: {
+		requestBody: {
+			content: {
+				'application/json': components['schemas']['CreateTeamDto'];
+			};
+		};
+		responses: {
+			/** @description Team has been created */
+			201: {
+				content: {
+					'application/json': components['schemas']['TeamDto'];
 				};
 			};
 		};
