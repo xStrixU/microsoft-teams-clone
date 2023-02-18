@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-export const useDocumentEvent = <T extends keyof WindowEventMap>(
+export const useWindowEvent = <T extends keyof WindowEventMap>(
 	type: T,
 	handler: (event: WindowEventMap[T]) => unknown
 ) => {

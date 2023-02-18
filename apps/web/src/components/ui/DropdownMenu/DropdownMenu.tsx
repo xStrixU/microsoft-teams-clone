@@ -9,7 +9,7 @@ import { DropdownMenuDivider } from './DropdownMenuDivider';
 import { DropdownMenuItem } from './DropdownMenuItem';
 import { DropdownMenuTarget } from './DropdownMenuTarget';
 
-import { useDocumentEvent } from '@/hooks/useDocumentEvent';
+import { useWindowEvent } from '@/hooks/useWindowEvent';
 
 import type { ReactNode } from 'react';
 
@@ -25,7 +25,7 @@ export const DropdownMenu = ({ className, children }: DropdownMenuProps) => {
 	const toggle = () => setIsOpen(!isOpen);
 	const close = () => setIsOpen(false);
 
-	useDocumentEvent('click', event => {
+	useWindowEvent('click', event => {
 		if (containerRef.current && !event.composedPath().includes(containerRef.current)) {
 			close();
 		}
