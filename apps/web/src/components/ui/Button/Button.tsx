@@ -1,5 +1,9 @@
 import { twMerge } from 'tailwind-merge';
 
+import type { ElementType } from 'react';
+
+import type { OverridableProps } from '@/components/OverridableComponent';
+
 const sizes = {
 	small: 'h-7 min-w-[64px] text-xs font-normal',
 	medium: 'h-9 min-w-[96px] text-sm',
@@ -23,21 +27,29 @@ type ButtonProps = Readonly<{
 	shape?: keyof typeof shapes;
 	appearance?: keyof typeof appearances;
 	fill?: boolean;
-}> &
-	JSX.IntrinsicElements['button'];
+}>;
 
-export const Button = ({
+type OverridableButtonProps<C extends ElementType> = OverridableProps<
+	C,
+	{
+		props: ButtonProps;
+		defaultAs: 'button';
+	}
+>;
+
+export const Button = <C extends ElementType>({
 	size = 'medium',
 	shape = 'rounded',
 	appearance = 'default',
 	fill = false,
 	className,
+	as: As = 'button',
 	...props
-}: ButtonProps) => (
-	<button
+}: OverridableButtonProps<C>) => (
+	<As
 		type="button"
 		className={twMerge(
-			'font-semibold transition-colors',
+			'px-5 font-semibold transition-colors disabled:cursor-not-allowed disabled:border-neutral-stroke-disabled disabled:bg-neutral-background-disabled disabled:text-neutral-foreground-disabled',
 			sizes[size],
 			shapes[shape],
 			appearances[appearance],

@@ -29,7 +29,7 @@ export const PrivateRoute = ({ loggedIn = true, children }: PrivateRouteProps) =
 	if (isLoading || loggedIn !== Boolean(user)) {
 		return (
 			<main className="flex h-full flex-col items-center justify-center">
-				<TeamsLogo className="h-40 w-40" />
+				<TeamsLogo className="h-36 w-36" />
 				<MicrosoftLogo className="mt-2" />
 			</main>
 		);

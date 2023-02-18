@@ -7,9 +7,9 @@ import CalendarIcon from '~/icons/calendar.svg';
 import ChatIcon from '~/icons/chat.svg';
 import TeamsIcon from '~/icons/teams.svg';
 
-import type { SVGIcon } from '@/types';
+import type { SVGComponent } from '@/types';
 
-const navItems: { label: string; href: string; icon: SVGIcon }[] = [
+const navItems: { label: string; href: string; icon: SVGComponent }[] = [
 	{
 		label: 'Activity',
 		href: '/activity',
@@ -35,7 +35,7 @@ const navItems: { label: string; href: string; icon: SVGIcon }[] = [
 export const Navbar = () => (
 	<nav
 		className={twMerge(
-			'relative w-16 bg-neutral-background-5',
+			'relative w-16 shrink-0 bg-neutral-background-5',
 			'after:absolute after:right-0 after:top-0 after:h-full after:w-2 after:bg-gradient-to-r after:from-transparent after:to-neutral-400 after:opacity-20 dark:after:bg-none'
 		)}
 	>
