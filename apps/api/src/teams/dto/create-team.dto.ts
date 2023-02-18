@@ -1,9 +1,9 @@
-import { IsNotEmpty } from 'class-validator';
+import { IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateTeamDto {
 	@IsNotEmpty()
 	name: string;
 
-	@IsNotEmpty()
+	@IsString()
 	description: string;
 }

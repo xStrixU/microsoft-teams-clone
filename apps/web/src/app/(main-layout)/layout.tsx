@@ -10,7 +10,9 @@ const MainLayout = ({ children }: { readonly children: ReactNode }) => (
 			<Header />
 			<div className="flex grow">
 				<Navbar />
-				<main className="grow bg-neutral-background-default">{children}</main>
+				<main className="grow bg-neutral-background-hover dark:bg-neutral-background-pressed">
+					{children}
+				</main>
 			</div>
 		</div>
 	</PrivateRoute>

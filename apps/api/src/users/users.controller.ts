@@ -1,5 +1,11 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { ApiConflictResponse, ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import {
+	ApiConflictResponse,
+	ApiCreatedResponse,
+	ApiOkResponse,
+	ApiTags,
+	ApiUnauthorizedResponse,
+} from '@nestjs/swagger';
 import { User } from '@prisma/client';
 
 import { CreateUserDto } from './dto/create-user.dto';
@@ -38,8 +44,12 @@ export class UsersController {
 	@Get('me/teams')
 	@Auth()
 	@ApiOkResponse({
-		type: TeamDto,
+		type: [TeamDto],
 		description: "Returns a list of the current user's teams",
+	})
+	@ApiUnauthorizedResponse({
+		type: OpenAPIHttpException,
+		description: 'You are not authenticated',
 	})
 	async findAllTeams(@AuthUser() user: User): Promise<TeamDto[]> {
 		const teams = await this.teamsService.findAllBy({

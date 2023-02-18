@@ -93,7 +93,13 @@ export interface operations {
 			/** @description Returns a list of the current user's teams */
 			200: {
 				content: {
-					'application/json': components['schemas']['TeamDto'];
+					'application/json': components['schemas']['TeamDto'][];
+				};
+			};
+			/** @description You are not authenticated */
+			401: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
 				};
 			};
 		};

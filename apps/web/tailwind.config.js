@@ -25,9 +25,11 @@ module.exports = {
 						hover: 'var(--color-neutral-background-hover)',
 						pressed: 'var(--color-neutral-background-pressed)',
 						selected: 'var(--color-neutral-background-selected)',
+						disabled: 'var(--color-neutral-background-disabled)',
 						5: 'var(--color-neutral-background-5)',
 					},
 					foreground: 'var(--color-neutral-foreground)',
+					'foreground-disabled': 'var(--color-neutral-foreground-disabled)',
 					'foreground-inverted': 'var(--color-neutral-foreground-inverted)',
 					'foreground-2': {
 						default: 'var(--color-neutral-foreground-2)',
@@ -38,6 +40,7 @@ module.exports = {
 						hover: 'var(--color-neutral-stroke-hover)',
 						pressed: 'var(--color-neutral-stroke-pressed)',
 						selected: 'var(--color-neutral-stroke-selected)',
+						disabled: 'var(--color-neutral-stroke-disabled)',
 						accessible: {
 							default: 'var(--color-neutral-stroke-accessible)',
 							hover: 'var(--color-neutral-stroke-accessible-hover)',

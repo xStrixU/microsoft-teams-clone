@@ -1,13 +1,13 @@
 import AvailableBadgeIcon from '~/icons/badge/available.svg';
 
-import type { SVGIcon } from '@/types';
+import type { SVGComponent } from '@/types';
 
 export const statuses = {
 	available: {
 		label: 'Available',
 		icon: AvailableBadgeIcon,
 	},
-} as const satisfies Record<string, { label: string; icon: SVGIcon }>;
+} as const satisfies Record<string, { label: string; icon: SVGComponent }>;
 
 export const sizes = {
 	tiny: 'h-1.5 w-1.5',
