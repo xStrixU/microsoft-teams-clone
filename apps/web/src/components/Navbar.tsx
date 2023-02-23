@@ -7,14 +7,14 @@ import CalendarIcon from '~/icons/calendar.svg';
 import ChatIcon from '~/icons/chat.svg';
 import TeamsIcon from '~/icons/teams.svg';
 
-import { CHAT_PATH } from '@/lib/paths';
+import { ACTIVITY_PATH, CALENDAR_PATH, CHAT_PATH, TEAMS_PATH } from '@/lib/paths';
 
 import type { SVGComponent } from '@/types';
 
 const navItems: { label: string; href: string; icon: SVGComponent }[] = [
 	{
 		label: 'Activity',
-		href: '/activity',
+		href: ACTIVITY_PATH,
 		icon: ActivityIcon,
 	},
 	{
@@ -24,12 +24,12 @@ const navItems: { label: string; href: string; icon: SVGComponent }[] = [
 	},
 	{
 		label: 'Calendar',
-		href: '/calendar',
+		href: CALENDAR_PATH,
 		icon: CalendarIcon,
 	},
 	{
 		label: 'Teams',
-		href: '/teams',
+		href: TEAMS_PATH,
 		icon: TeamsIcon,
 	},
 ];
