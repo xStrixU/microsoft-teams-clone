@@ -59,18 +59,21 @@ export const SignUpForm = () => {
 			<Input
 				type="email"
 				label="Email"
+				autoComplete="username"
 				contentBefore={<MdAlternateEmail size={18} />}
 				required
 				{...register('email')}
 			/>
 			<PasswordInput
 				label="Password"
+				autoComplete="new-password"
 				contentBefore={<HiOutlineLockClosed size={18} />}
 				required
 				{...register('password')}
 			/>
 			<PasswordInput
 				label="Confirm password"
+				autoComplete="new-password"
 				contentBefore={<HiOutlineLockClosed size={18} />}
 				required
 				{...register('confirmPassword')}

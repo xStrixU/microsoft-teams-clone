@@ -37,12 +37,14 @@ export const SignInForm = () => {
 			<Input
 				type="email"
 				label="Email"
+				autoComplete="username"
 				contentBefore={<MdAlternateEmail size={18} />}
 				required
 				{...register('email')}
 			/>
 			<PasswordInput
 				label="Password"
+				autoComplete="current-password"
 				contentBefore={<HiOutlineLockClosed size={18} />}
 				required
 				{...register('password')}
