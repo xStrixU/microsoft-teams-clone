@@ -80,7 +80,7 @@ export class RedisSessionStore extends Store {
 	}
 
 	touch(sessionId: string, session: SessionData, callback?: () => void): void {
-		const ttl = this.getTTL(session) / 1000;
+		const ttl = this.getTTL(session);
 
 		this.redis.pExpire(`${PREFIX}${sessionId}`, ttl).finally(callback);
 	}
