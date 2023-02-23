@@ -9,9 +9,9 @@ type TeamActionCardProps = Readonly<{
 }>;
 
 export const TeamActionCard = ({ title, icon: Icon, children }: TeamActionCardProps) => (
-	<article className="flex h-64 w-72 flex-col items-center justify-center rounded bg-white shadow">
+	<article className="flex h-64 w-72 flex-col items-center justify-center rounded bg-neutral-foreground-inverted shadow">
 		<Icon className="rounded-md" />
-		<p className="mt-2 mb-4 text-lg font-bold">{title}</p>
+		<p className="mt-2 mb-4 text-lg font-bold text-neutral-foreground">{title}</p>
 		{children}
 	</article>
 );
