@@ -17,6 +17,7 @@ type RootInputProps = Readonly<{
 	id: string;
 	label?: string;
 	required?: boolean;
+	fill?: boolean;
 	size?: keyof typeof sizes;
 	error?: FieldError;
 	children: ReactNode;
@@ -26,11 +27,12 @@ export const RootInput = ({
 	id,
 	label,
 	required,
+	fill,
 	size = 'medium',
 	error,
 	children,
 }: RootInputProps) => (
-	<div className={sizes[size]}>
+	<div className={twMerge(sizes[size], fill && 'w-full')}>
 		{label && (
 			<label htmlFor={id} className="mb-1 text-neutral-foreground">
 				{label}

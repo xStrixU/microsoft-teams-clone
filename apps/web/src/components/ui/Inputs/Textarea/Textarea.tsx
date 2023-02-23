@@ -15,11 +15,11 @@ const sizes: Record<Exclude<TextareaProps['size'], undefined>, string> = {
 };
 
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
-	({ label, required, size = 'medium', error, placeholder, className, ...props }, ref) => {
+	({ label, required, fill, size = 'medium', error, placeholder, className, ...props }, ref) => {
 		const id = useId();
 
 		return (
-			<RootInput id={id} label={label} required={required} size={size} error={error}>
+			<RootInput id={id} label={label} required={required} fill={fill} size={size} error={error}>
 				<textarea
 					ref={ref}
 					id={id}
