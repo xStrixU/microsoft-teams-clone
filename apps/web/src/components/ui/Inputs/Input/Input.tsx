@@ -23,6 +23,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 		{
 			label,
 			required,
+			fill,
 			size = 'medium',
 			error,
 			contentBefore,
@@ -36,7 +37,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 		const id = useId();
 
 		return (
-			<RootInput id={id} label={label} required={required} size={size} error={error}>
+			<RootInput id={id} label={label} required={required} fill={fill} size={size} error={error}>
 				{contentBefore && (
 					<div className="ml-2 flex text-neutral-stroke-accessible-default">{contentBefore}</div>
 				)}

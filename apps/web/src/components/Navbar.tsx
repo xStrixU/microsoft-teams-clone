@@ -7,6 +7,8 @@ import CalendarIcon from '~/icons/calendar.svg';
 import ChatIcon from '~/icons/chat.svg';
 import TeamsIcon from '~/icons/teams.svg';
 
+import { CHAT_PATH } from '@/lib/paths';
+
 import type { SVGComponent } from '@/types';
 
 const navItems: { label: string; href: string; icon: SVGComponent }[] = [
@@ -17,7 +19,7 @@ const navItems: { label: string; href: string; icon: SVGComponent }[] = [
 	},
 	{
 		label: 'Chat',
-		href: '/chat',
+		href: CHAT_PATH,
 		icon: ChatIcon,
 	},
 	{
