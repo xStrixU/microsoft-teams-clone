@@ -1,6 +1,6 @@
 import { Transition } from '@headlessui/react';
 import { createPortal } from 'react-dom';
-import { GrClose } from 'react-icons/gr';
+import { VscChromeClose } from 'react-icons/vsc';
 
 import type { ReactNode } from 'react';
 
@@ -25,12 +25,17 @@ export const Modal = ({ title, isOpen, onClose, children }: ModalProps) =>
 		>
 			<div
 				onClick={e => e.stopPropagation()}
-				className="relative m-auto h-full w-full bg-white p-5 sm:h-fit sm:max-w-2xl sm:rounded-md"
+				className="relative m-auto h-full w-full bg-neutral-foreground-inverted p-5 sm:h-fit sm:max-w-2xl sm:rounded-md"
 			>
 				<div className="mb-8 flex items-center">
-					<strong className="text-xl font-bold">{title}</strong>
-					<button type="button" aria-label="Close modal" onClick={onClose} className="ml-auto">
-						<GrClose size={20} />
+					<strong className="text-xl font-bold text-neutral-foreground">{title}</strong>
+					<button
+						type="button"
+						aria-label="Close modal"
+						onClick={onClose}
+						className="ml-auto text-neutral-foreground"
+					>
+						<VscChromeClose size={26} />
 					</button>
 				</div>
 				{children}
