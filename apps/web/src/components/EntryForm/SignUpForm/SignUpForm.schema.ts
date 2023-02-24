@@ -5,8 +5,7 @@ import { SCHEMA_REQUIRED_MESSAGE } from '@/lib/constants';
 
 export const signUpFormSchema = yup
 	.object({
-		firstName: yup.string().required(SCHEMA_REQUIRED_MESSAGE),
-		lastName: yup.string().required(SCHEMA_REQUIRED_MESSAGE),
+		fullName: yup.string().required(SCHEMA_REQUIRED_MESSAGE),
 		email: yup.string().email('Invalid email').required(SCHEMA_REQUIRED_MESSAGE),
 		password: yup
 			.string()

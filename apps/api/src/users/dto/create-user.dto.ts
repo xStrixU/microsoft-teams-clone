@@ -3,10 +3,7 @@ import { USER_PASSWORD_REGEX } from 'common';
 
 export class CreateUserDto {
 	@IsNotEmpty()
-	firstName: string;
-
-	@IsNotEmpty()
-	lastName: string;
+	fullName: string;
 
 	@IsEmail()
 	email: string;

@@ -26,7 +26,7 @@ export const ChatUser = ({ isActive, ...props }: ChatUserProps) => {
 		) : (
 			<NewChatIcon className="rounded-full text-neutral-foreground-inverted" />
 		);
-	const name = 'user' in props ? `${props.user.firstName} ${props.user.lastName}` : props.name;
+	const name = 'user' in props ? props.user.fullName : props.name;
 
 	return (
 		<div

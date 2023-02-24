@@ -4,8 +4,7 @@ CREATE COLLATION case_insensitive (provider = icu, locale = 'und-u-ks-level2', d
 -- CreateTable
 CREATE TABLE "user" (
     "id" SERIAL NOT NULL,
-    "first_name" TEXT NOT NULL,
-    "last_name" TEXT NOT NULL,
+    "full_name" TEXT NOT NULL,
     "email" TEXT COLLATE case_insensitive NOT NULL,
     "password" TEXT NOT NULL,
 

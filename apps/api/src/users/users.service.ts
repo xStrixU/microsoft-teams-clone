@@ -17,14 +17,13 @@ export class UsersService {
 		private readonly prisma: PrismaService
 	) {}
 
-	async create({ firstName, lastName, email, password }: CreateUserDto): Promise<User> {
+	async create({ fullName, email, password }: CreateUserDto): Promise<User> {
 		const hashedPassword = await this.hashPassword(password);
 
 		try {
 			const user = await this.prisma.user.create({
 				data: {
-					firstName,
-					lastName,
+					fullName,
 					email,
 					password: hashedPassword,
 				},

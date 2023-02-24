@@ -31,7 +31,10 @@ type UserAvatarProps = Readonly<{
 }>;
 
 export const UserAvatar = ({ user, size = 32, className, badge }: UserAvatarProps) => {
-	const initials = user.firstName[0] + user.lastName[0];
+	const initials = user.fullName
+		.split(' ')
+		.map(name => name[0])
+		.join('');
 
 	return (
 		<div

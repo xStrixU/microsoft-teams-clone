@@ -9,15 +9,13 @@ describe('users.mapper', () => {
 	it('should map User to UserDto', () => {
 		const user: User = {
 			id: 1,
-			firstName: 'Alex',
-			lastName: 'Smith',
+			fullName: 'Alex Smith',
 			email: 'alex@gmail.com',
 			password: 'Alex123',
 		};
 		const userDto: UserDto = {
 			id: user.id,
-			firstName: user.firstName,
-			lastName: user.lastName,
+			fullName: user.fullName,
 			email: user.email,
 		};
 
