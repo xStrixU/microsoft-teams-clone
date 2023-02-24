@@ -4,10 +4,9 @@ import type { CreateSessionDto } from '@/sessions/dto/create-session.dto';
 import type { CreateUserDto } from '@/users/dto/create-user.dto';
 
 export const createUserDto: CreateUserDto = {
-	firstName: 'Foo',
-	lastName: 'Bar',
-	email: 'foo@gmail.com',
-	password: 'pass123',
+	fullName: 'Alex Smith',
+	email: 'alex.smith@gmail.com',
+	password: 'alex123',
 };
 
 export const createSessionDto: CreateSessionDto = {

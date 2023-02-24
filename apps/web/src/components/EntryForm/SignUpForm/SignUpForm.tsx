@@ -44,17 +44,10 @@ export const SignUpForm = () => {
 		<form onSubmit={onSubmit} className="flex flex-col gap-4">
 			<Input
 				type="text"
-				label="First name"
+				label="Full name"
 				contentBefore={<BiUser size={18} />}
 				required
-				{...register('firstName')}
-			/>
-			<Input
-				type="text"
-				label="Last name"
-				contentBefore={<BiUser size={18} />}
-				required
-				{...register('lastName')}
+				{...register('fullName')}
 			/>
 			<Input
 				type="email"

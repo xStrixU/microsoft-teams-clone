@@ -27,15 +27,13 @@ export type webhooks = Record<string, never>;
 export interface components {
 	schemas: {
 		CreateUserDto: {
-			firstName: string;
-			lastName: string;
+			fullName: string;
 			email: string;
 			password: string;
 		};
 		UserDto: {
 			id: number;
-			firstName: string;
-			lastName: string;
+			fullName: string;
 			email: string;
 		};
 		OpenAPIHttpException: {

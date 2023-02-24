@@ -8,12 +8,11 @@ generator client {
 }
 
 model User {
-  id        Int          @id @default(autoincrement())
-  firstName String       @map("first_name")
-  lastName  String       @map("last_name")
-  email     String       @unique
-  password  String
-  members   TeamMember[]
+  id       Int          @id @default(autoincrement())
+  fullName String       @map("full_name")
+  email    String       @unique
+  password String
+  members  TeamMember[]
 
   @@map("user")
 }
