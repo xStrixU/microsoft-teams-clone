@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import {
 	ApiConflictResponse,
 	ApiCreatedResponse,
@@ -9,8 +9,10 @@ import {
 import { User } from '@prisma/client';
 
 import { CreateUserDto } from './dto/create-user.dto';
+import { FoundUserDto } from './dto/found-user.dto';
+import { GetUsersQueryDto } from './dto/get-users-query.dto';
 import { UserDto } from './dto/user.dto';
-import { mapUserToUserDto } from './users.mapper';
+import { mapUserToFoundUserDto, mapUserToUserDto } from './users.mapper';
 import { UsersService } from './users.service';
 
 import { Auth } from '@/auth/auth.decorator';
@@ -39,6 +41,17 @@ export class UsersController {
 	})
 	async create(@Body() createUserDto: CreateUserDto): Promise<UserDto> {
 		return mapUserToUserDto(await this.usersService.create(createUserDto));
+	}
+
+	@Get()
+	@ApiOkResponse({
+		type: [FoundUserDto],
+		description: 'Returns found users',
+	})
+	async getUsers(@Query() getUsersQueryDto: GetUsersQueryDto): Promise<FoundUserDto[]> {
+		const users = await this.usersService.getUsers(getUsersQueryDto);
+
+		return users.map(mapUserToFoundUserDto);
 	}
 
 	@Get('me/teams')
