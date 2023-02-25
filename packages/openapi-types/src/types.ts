@@ -135,6 +135,12 @@ export interface operations {
 					'application/json': components['schemas']['TeamDto'];
 				};
 			};
+			/** @description You are not authenticated */
+			401: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
 		};
 	};
 	SessionsController_create: {
