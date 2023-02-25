@@ -5,6 +5,7 @@
 
 export interface paths {
 	'/users': {
+		get: operations['UsersController_getUsers'];
 		post: operations['UsersController_create'];
 	};
 	'/users/me/teams': {
@@ -41,6 +42,10 @@ export interface components {
 			message: string;
 			error: string;
 		};
+		FoundUserDto: {
+			id: number;
+			fullName: string;
+		};
 		TeamDto: {
 			id: number;
 			name: string;
@@ -65,6 +70,21 @@ export interface components {
 export type external = Record<string, never>;
 
 export interface operations {
+	UsersController_getUsers: {
+		parameters: {
+			query: {
+				search: string;
+			};
+		};
+		responses: {
+			/** @description Returns found users */
+			200: {
+				content: {
+					'application/json': components['schemas']['FoundUserDto'][];
+				};
+			};
+		};
+	};
 	UsersController_create: {
 		requestBody: {
 			content: {

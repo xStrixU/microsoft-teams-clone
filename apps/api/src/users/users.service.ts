@@ -1,6 +1,7 @@
 import { ConflictException, Inject, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import * as bcrypt from 'bcrypt';
+import emailValidator from 'email-validator';
 
 import { AppConfigService } from '@/app.types';
 import { PrismaService } from '@/database/prisma/prisma.service';
@@ -8,6 +9,7 @@ import { PrismaErrorCode } from '@/database/prisma/prisma.types';
 import { isPrismaError } from '@/database/prisma/prisma.utils';
 
 import type { CreateUserDto } from './dto/create-user.dto';
+import type { GetUsersQueryDto } from './dto/get-users-query.dto';
 import type { Prisma, User } from '@prisma/client';
 
 @Injectable()
@@ -37,6 +39,35 @@ export class UsersService {
 
 			throw err;
 		}
+	}
+
+	async getUsers({ search }: GetUsersQueryDto): Promise<User[]> {
+		if (emailValidator.validate(search)) {
+			const users = await this.prisma.user.findMany({
+				where: {
+					email: {
+						search,
+					},
+				},
+			});
+
+			return users;
+		}
+
+		const names = search.split(' ').filter(Boolean);
+		const users = await this.prisma.user.findMany({
+			where: {
+				fullName: {
+					search: names.join(' | '),
+				},
+			},
+		});
+
+		return users.filter(user => {
+			const userNames = user.fullName.split(' ');
+
+			return names.every(name => userNames.includes(name));
+		});
 	}
 
 	hashPassword(password: string): Promise<string> {
