@@ -1,6 +1,5 @@
 import { Body, Controller, Delete, Get, HttpStatus, Post, Res, Session } from '@nestjs/common';
 import {
-	ApiCookieAuth,
 	ApiCreatedResponse,
 	ApiNoContentResponse,
 	ApiOkResponse,
@@ -44,14 +43,9 @@ export class SessionsController {
 
 	@Get('me')
 	@Auth()
-	@ApiCookieAuth()
 	@ApiOkResponse({
 		type: UserDto,
 		description: 'Returns the user associated with the current session',
-	})
-	@ApiUnauthorizedResponse({
-		type: OpenAPIHttpException,
-		description: 'You are not authenticated',
 	})
 	getCurrent(@AuthUser() user: User): UserDto {
 		return mapUserToUserDto(user);
