@@ -4,8 +4,6 @@ import { UserAvatarBadge } from './UserAvatarBadge/UserAvatarBadge';
 
 import type { ComponentProps } from 'react';
 
-import type { User } from '@/types';
-
 const sizes = {
 	16: 'h-4 w-4 text-[0.625rem]',
 	20: 'h-5 w-5 text-[0.625rem]',
@@ -24,7 +22,7 @@ const sizes = {
 } as const;
 
 type UserAvatarProps = Readonly<{
-	user: User;
+	user: { fullName: string };
 	size?: keyof typeof sizes;
 	className?: string;
 	badge?: Omit<ComponentProps<typeof UserAvatarBadge>, 'size'>;
