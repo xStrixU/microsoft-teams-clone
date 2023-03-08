@@ -1,5 +1,5 @@
 import { MessageInput } from './MessageInput';
-import { NewChatHeader } from './NewChatHeader';
+import { NewChatHeader } from './NewChatHeader/NewChatHeader';
 
 type ChatProps = Readonly<{
 	isNewChat: boolean;
