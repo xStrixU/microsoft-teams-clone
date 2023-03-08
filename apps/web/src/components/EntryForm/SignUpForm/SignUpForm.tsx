@@ -14,7 +14,6 @@ import { PasswordInput } from '@/components/ui/Inputs/PasswordInput/PasswordInpu
 
 import { useUser } from '@/hooks/useUser';
 import { useYupForm } from '@/hooks/useYupForm';
-import { SIGN_IN_PATH } from '@/lib/paths';
 import { createUser } from '@/services/users.service';
 
 export const SignUpForm = () => {
@@ -24,7 +23,7 @@ export const SignUpForm = () => {
 		registerUser.mutate(data, {
 			onSuccess: () => {
 				toast.success('Signed up successfully');
-				router.push(SIGN_IN_PATH);
+				router.push('/sign-in');
 			},
 			onError: err => {
 				if (err instanceof createUser.Error) {
