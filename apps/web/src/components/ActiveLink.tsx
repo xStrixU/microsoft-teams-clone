@@ -6,22 +6,23 @@ import { twMerge } from 'tailwind-merge';
 
 import type { ComponentProps } from 'react';
 
-type ActiveLinkProps = Readonly<{
+type ActiveLinkProps<T> = Readonly<{
 	activeClassName?: string;
 	exact?: boolean;
 }> &
-	ComponentProps<typeof Link>;
+	ComponentProps<typeof Link<T>>;
 
-export const ActiveLink = ({
+export const ActiveLink = <T,>({
 	href,
 	className,
 	activeClassName,
 	exact = false,
 	...props
-}: ActiveLinkProps) => {
+}: ActiveLinkProps<T>) => {
 	const pathname = usePathname();
+	const formattedHref = href.toString().replace(/\/$/, '');
 
-	const isActive = exact ? pathname === href.toString() : pathname?.startsWith(href.toString());
+	const isActive = exact ? pathname === formattedHref : pathname?.startsWith(formattedHref);
 
 	return (
 		<Link href={href} className={twMerge(className, isActive && activeClassName)} {...props} />

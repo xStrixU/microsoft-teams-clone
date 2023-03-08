@@ -6,6 +6,10 @@ type ChatPageProps = Readonly<{
 	params: OptionalCatchAllParams<'slug'>;
 }>;
 
+export const metadata = {
+	title: 'Chat',
+};
+
 const ChatPage = ({ params: { slug } }: ChatPageProps) => {
 	const isNewChat = slug?.[0] === 'new';
 

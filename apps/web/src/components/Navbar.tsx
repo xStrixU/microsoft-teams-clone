@@ -7,32 +7,28 @@ import CalendarIcon from '~/icons/calendar.svg';
 import ChatIcon from '~/icons/chat.svg';
 import TeamsIcon from '~/icons/teams.svg';
 
-import { ACTIVITY_PATH, CALENDAR_PATH, CHAT_PATH, TEAMS_PATH } from '@/lib/paths';
-
-import type { SVGComponent } from '@/types';
-
-const navItems: { label: string; href: string; icon: SVGComponent }[] = [
+const navItems = [
 	{
 		label: 'Activity',
-		href: ACTIVITY_PATH,
+		href: '/activity',
 		icon: ActivityIcon,
 	},
 	{
 		label: 'Chat',
-		href: CHAT_PATH,
+		href: '/chat/',
 		icon: ChatIcon,
 	},
 	{
 		label: 'Calendar',
-		href: CALENDAR_PATH,
+		href: '/calendar',
 		icon: CalendarIcon,
 	},
 	{
 		label: 'Teams',
-		href: TEAMS_PATH,
+		href: '/teams',
 		icon: TeamsIcon,
 	},
-];
+] as const;
 
 export const Navbar = () => (
 	<nav

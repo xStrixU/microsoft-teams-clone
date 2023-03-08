@@ -7,7 +7,6 @@ import MicrosoftLogo from '~/images/microsoft-logo.svg';
 import TeamsLogo from '~/images/teams-logo.svg';
 
 import { useUser } from '@/hooks/useUser';
-import { INDEX_PATH, SIGN_IN_PATH } from '@/lib/paths';
 
 import type { ReactNode } from 'react';
 
@@ -22,7 +21,7 @@ export const PrivateRoute = ({ loggedIn = true, children }: PrivateRouteProps) =
 
 	useEffect(() => {
 		if (!isLoading && loggedIn !== Boolean(user)) {
-			router.replace(loggedIn ? SIGN_IN_PATH : INDEX_PATH);
+			router.replace(loggedIn ? '/sign-in' : '/');
 		}
 	}, [isLoading, loggedIn, router, user]);
 
