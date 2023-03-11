@@ -41,30 +41,32 @@ export class UsersService {
 		}
 	}
 
-	async getUsers({ search }: GetUsersQueryDto): Promise<User[]> {
+	async getUsers({ search }: GetUsersQueryDto, { id }: User): Promise<User[]> {
 		if (emailValidator.validate(search)) {
 			const users = await this.prisma.user.findMany({
 				where: {
 					email: {
 						search,
 					},
+					NOT: { id },
 				},
 			});
 
 			return users;
 		}
 
-		const names = search.split(' ').filter(Boolean);
+		const names = search.toLowerCase().split(' ').filter(Boolean);
 		const users = await this.prisma.user.findMany({
 			where: {
 				fullName: {
 					search: names.join(' | '),
 				},
+				NOT: { id },
 			},
 		});
 
 		return users.filter(user => {
-			const userNames = user.fullName.split(' ');
+			const userNames = user.fullName.toLowerCase().split(' ');
 
 			return names.every(name => userNames.includes(name));
 		});

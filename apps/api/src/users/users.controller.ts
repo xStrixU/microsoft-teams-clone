@@ -38,12 +38,16 @@ export class UsersController {
 	}
 
 	@Get()
+	@Auth()
 	@ApiOkResponse({
 		type: [FoundUserDto],
 		description: 'Returns found users',
 	})
-	async getUsers(@Query() getUsersQueryDto: GetUsersQueryDto): Promise<FoundUserDto[]> {
-		const users = await this.usersService.getUsers(getUsersQueryDto);
+	async getUsers(
+		@Query() getUsersQueryDto: GetUsersQueryDto,
+		@AuthUser() user: User
+	): Promise<FoundUserDto[]> {
+		const users = await this.usersService.getUsers(getUsersQueryDto, user);
 
 		return users.map(mapUserToFoundUserDto);
 	}

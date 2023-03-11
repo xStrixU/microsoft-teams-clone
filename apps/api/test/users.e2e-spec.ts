@@ -3,7 +3,7 @@ import request from 'supertest';
 import { beforeAll, describe, expect, it } from 'vitest';
 
 import { createTestingModule } from './utils/create-testing-module';
-import { createUserDto, register } from './utils/user';
+import { createUserDto, login, register } from './utils/user';
 
 import type { INestApplication } from '@nestjs/common';
 
@@ -35,6 +35,10 @@ describe('Users', () => {
 	});
 
 	describe('GET /users', () => {
+		beforeAll(async () => {
+			await login(agent);
+		});
+
 		const createUserDtos: CreateUserDto[] = [
 			{
 				fullName: 'James Williams',
