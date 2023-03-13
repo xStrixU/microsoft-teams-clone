@@ -9,11 +9,13 @@ generator client {
 }
 
 model User {
-  id       Int          @id @default(autoincrement())
-  fullName String       @map("full_name")
-  email    String       @unique
-  password String
-  members  TeamMember[]
+  id                  Int                  @id @default(autoincrement())
+  fullName            String               @map("full_name")
+  email               String               @unique
+  password            String
+  members             TeamMember[]
+  conversationMembers ConversationMember[]
+  messages            Message[]
 
   @@map("user")
 }
@@ -36,6 +38,37 @@ model TeamMember {
 
   @@unique([memberId, teamId])
   @@map("team_member")
+}
+
+model Conversation {
+  id       String               @id @default(uuid())
+  name     String?
+  members  ConversationMember[]
+  messages Message[]
+
+  @@map("conversation")
+}
+
+model ConversationMember {
+  memberId       Int          @map("member_id")
+  conversationId String       @map("conversation_id")
+  member         User         @relation(fields: [memberId], references: [id])
+  conversation   Conversation @relation(fields: [conversationId], references: [id])
+
+  @@unique([memberId, conversationId])
+  @@map("conversation_member")
+}
+
+model Message {
+  id             Int          @id @default(autoincrement())
+  conversationId String       @map("conversation_id")
+  authorId       Int          @map("author_id")
+  content        String
+  createdAt      DateTime     @default(now()) @map("created_at")
+  conversation   Conversation @relation(fields: [conversationId], references: [id])
+  author         User         @relation(fields: [authorId], references: [id])
+
+  @@map("message")
 }
 
 enum TeamMemberRole {
