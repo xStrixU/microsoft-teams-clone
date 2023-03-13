@@ -11,8 +11,18 @@ export interface paths {
 	'/users/me/teams': {
 		get: operations['UsersController_findAllTeams'];
 	};
+	'/users/me/conversations': {
+		get: operations['UsersController_findAllConversations'];
+	};
 	'/teams': {
 		post: operations['TeamsController_create'];
+	};
+	'/conversations': {
+		post: operations['ConversationsController_create'];
+	};
+	'/conversations/{id}/messages': {
+		get: operations['ConversationsController_getMessages'];
+		post: operations['ConversationsController_createMessage'];
 	};
 	'/sessions': {
 		post: operations['SessionsController_create'];
@@ -51,9 +61,21 @@ export interface components {
 			name: string;
 			description: string;
 		};
+		ConversationDto: Record<string, never>;
 		CreateTeamDto: {
 			name: string;
 			description: string;
+		};
+		CreateConversationDto: {
+			memberIds: number[];
+		};
+		CreateMessageDto: {
+			content: string;
+		};
+		MessageDto: {
+			id: number;
+			author: components['schemas']['FoundUserDto'];
+			content: string;
 		};
 		CreateSessionDto: {
 			email: string;
@@ -81,6 +103,12 @@ export interface operations {
 			200: {
 				content: {
 					'application/json': components['schemas']['FoundUserDto'][];
+				};
+			};
+			/** @description You are not authenticated */
+			401: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
 				};
 			};
 		};
@@ -122,6 +150,22 @@ export interface operations {
 			};
 		};
 	};
+	UsersController_findAllConversations: {
+		responses: {
+			/** @description Returns a list of the current user's conversations */
+			200: {
+				content: {
+					'application/json': components['schemas']['ConversationDto'][];
+				};
+			};
+			/** @description You are not authenticated */
+			401: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
+		};
+	};
 	TeamsController_create: {
 		requestBody: {
 			content: {
@@ -137,6 +181,95 @@ export interface operations {
 			};
 			/** @description You are not authenticated */
 			401: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
+		};
+	};
+	ConversationsController_create: {
+		requestBody: {
+			content: {
+				'application/json': components['schemas']['CreateConversationDto'];
+			};
+		};
+		responses: {
+			/** @description Conversation has been created */
+			201: {
+				content: {
+					'application/json': components['schemas']['ConversationDto'];
+				};
+			};
+			/** @description You are not authenticated */
+			401: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
+			/** @description Something went wrong */
+			409: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
+		};
+	};
+	ConversationsController_getMessages: {
+		parameters: {
+			query?: {
+				before?: number;
+			};
+			path: {
+				id: string;
+			};
+		};
+		responses: {
+			/** @description Returns last messages */
+			200: {
+				content: {
+					'application/json': components['schemas']['MessageDto'][];
+				};
+			};
+			/** @description You are not authenticated */
+			401: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
+			/** @description You are not a member of this conversation */
+			409: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
+		};
+	};
+	ConversationsController_createMessage: {
+		parameters: {
+			path: {
+				id: string;
+			};
+		};
+		requestBody: {
+			content: {
+				'application/json': components['schemas']['CreateMessageDto'];
+			};
+		};
+		responses: {
+			/** @description Message has been created */
+			201: {
+				content: {
+					'application/json': components['schemas']['MessageDto'];
+				};
+			};
+			/** @description You are not authenticated */
+			401: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
+			/** @description Something went wrong or you are not a member of this conversation */
+			409: {
 				content: {
 					'application/json': components['schemas']['OpenAPIHttpException'];
 				};

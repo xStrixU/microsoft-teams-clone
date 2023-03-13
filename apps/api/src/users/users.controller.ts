@@ -12,6 +12,9 @@ import { UsersService } from './users.service';
 import { Auth } from '@/auth/auth.decorator';
 import { AuthUser } from '@/auth/auth-user.decorator';
 import { OpenAPIHttpException } from '@/common/openapi/openapi-http-exception';
+import { mapConversationToConversationDto } from '@/conversations/conversations.mapper';
+import { ConversationsService } from '@/conversations/conversations.service';
+import { ConversationDto } from '@/conversations/dto/conversation-dto';
 import { TeamDto } from '@/teams/dto/team.dto';
 import { mapTeamToTeamDto } from '@/teams/teams.mapper';
 import { TeamsService } from '@/teams/teams.service';
@@ -21,7 +24,8 @@ import { TeamsService } from '@/teams/teams.service';
 export class UsersController {
 	constructor(
 		private readonly usersService: UsersService,
-		private readonly teamsService: TeamsService
+		private readonly teamsService: TeamsService,
+		private readonly conversationsService: ConversationsService
 	) {}
 
 	@Post()
@@ -68,5 +72,23 @@ export class UsersController {
 		});
 
 		return teams.map(mapTeamToTeamDto);
+	}
+
+	@Get('me/conversations')
+	@Auth()
+	@ApiOkResponse({
+		type: [ConversationDto],
+		description: "Returns a list of the current user's conversations",
+	})
+	async findAllConversations(@AuthUser() user: User): Promise<ConversationDto[]> {
+		const conversations = await this.conversationsService.findAllBy({
+			members: {
+				some: {
+					memberId: user.id,
+				},
+			},
+		});
+
+		return conversations.map(mapConversationToConversationDto);
 	}
 }
