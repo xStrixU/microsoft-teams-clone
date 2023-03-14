@@ -1,8 +1,8 @@
 import { ConflictException, Injectable } from '@nestjs/common';
 
+import { CONVERSATION_ROOM_PREFIX, ConversationsGateway } from './conversations.gateway';
 import { mapAppMessageToMessageDto } from './conversations.mapper';
 
-import { AppGateway } from '@/app.gateway';
 import { PrismaService } from '@/database/prisma/prisma.service';
 import { isPrismaError } from '@/database/prisma/prisma.utils';
 
@@ -18,7 +18,10 @@ export const messageInclude = {
 
 @Injectable()
 export class ConversationsService {
-	constructor(private readonly prisma: PrismaService, private readonly gateway: AppGateway) {}
+	constructor(
+		private readonly prisma: PrismaService,
+		private readonly gateway: ConversationsGateway
+	) {}
 
 	async create({ memberIds }: CreateConversationDto, user: User): Promise<Conversation> {
 		try {
@@ -57,10 +60,9 @@ export class ConversationsService {
 				include: messageInclude,
 			});
 
-			this.gateway.server.emit(
-				`conversation:${conversationId}`,
-				mapAppMessageToMessageDto(message)
-			);
+			this.gateway.server
+				.to(CONVERSATION_ROOM_PREFIX + conversationId)
+				.emit('message', mapAppMessageToMessageDto(message));
 
 			return message;
 		} catch (err) {
