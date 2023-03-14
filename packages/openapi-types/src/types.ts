@@ -61,7 +61,10 @@ export interface components {
 			name: string;
 			description: string;
 		};
-		ConversationDto: Record<string, never>;
+		ConversationDto: {
+			id: string;
+			name: string | null;
+		};
 		CreateTeamDto: {
 			name: string;
 			description: string;
