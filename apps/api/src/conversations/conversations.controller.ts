@@ -7,7 +7,7 @@ import {
 	mapConversationToConversationDto,
 } from './conversations.mapper';
 import { ConversationsService } from './conversations.service';
-import { ConversationDto } from './dto/conversation-dto';
+import { ConversationDto } from './dto/conversation.dto';
 import { CreateConversationDto } from './dto/create-conversation.dto';
 import { CreateMessageDto } from './dto/create-message.dto';
 import { getMessagesQueryDto } from './dto/get-messages-query.dto';

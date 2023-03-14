@@ -14,7 +14,7 @@ import { AuthUser } from '@/auth/auth-user.decorator';
 import { OpenAPIHttpException } from '@/common/openapi/openapi-http-exception';
 import { mapConversationToConversationDto } from '@/conversations/conversations.mapper';
 import { ConversationsService } from '@/conversations/conversations.service';
-import { ConversationDto } from '@/conversations/dto/conversation-dto';
+import { ConversationDto } from '@/conversations/dto/conversation.dto';
 import { TeamDto } from '@/teams/dto/team.dto';
 import { mapTeamToTeamDto } from '@/teams/teams.mapper';
 import { TeamsService } from '@/teams/teams.service';
