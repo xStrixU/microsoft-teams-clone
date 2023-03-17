@@ -1,5 +1,7 @@
 import { ChatAsideMenu } from '@/components/ChatAsideMenu/ChatAsideMenu';
 
+import { ChatProvider } from '@/providers/ChatProvider';
+
 import type { ReactNode } from 'react';
 
 import type { OptionalCatchAllParams } from '@/types';
@@ -13,10 +15,12 @@ const ChatLayout = ({ children, params: { slug } }: ChatLayoutProps) => {
 	const isNewChat = slug?.[0] === 'new';
 
 	return (
-		<div className="flex h-full">
-			<ChatAsideMenu isNewChat={isNewChat} />
-			{children}
-		</div>
+		<ChatProvider>
+			<div className="flex h-full">
+				<ChatAsideMenu isNewChat={isNewChat} />
+				{children}
+			</div>
+		</ChatProvider>
 	);
 };
 
