@@ -3,23 +3,23 @@ import { useEffect } from 'react';
 import { FoundUser } from './FoundUser';
 
 import { useGetUsers } from '@/hooks/useGetUsers';
+import { useChatContext } from '@/providers/ChatProvider';
 
 import type { FoundUser as FoundUserType } from '@/types';
 
 type FoundUsersListProps = Readonly<{
 	isChanging: boolean;
 	value: string;
-	selectedUsers: FoundUserType[];
 	handleFoundUserClick: (user: FoundUserType) => void;
 }>;
 
 export const FoundUsersList = ({
 	isChanging,
 	value,
-	selectedUsers,
 	handleFoundUserClick,
 }: FoundUsersListProps) => {
 	const { users, refetchUsers, isLoading } = useGetUsers(value);
+	const { selectedUsers } = useChatContext();
 	const filteredUsers = users?.filter(
 		user => !selectedUsers.find(selectedUser => selectedUser.id === user.id)
 	);
