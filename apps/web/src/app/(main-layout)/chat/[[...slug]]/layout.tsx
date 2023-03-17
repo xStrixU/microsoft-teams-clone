@@ -12,12 +12,13 @@ type ChatLayoutProps = Readonly<{
 }>;
 
 const ChatLayout = ({ children, params: { slug } }: ChatLayoutProps) => {
-	const isNewChat = slug?.[0] === 'new';
+	const conversationId = slug?.[0] || null;
+	const isNewChat = conversationId === 'new';
 
 	return (
 		<ChatProvider>
 			<div className="flex h-full">
-				<ChatAsideMenu isNewChat={isNewChat} />
+				<ChatAsideMenu conversationId={conversationId} isNewChat={isNewChat} />
 				{children}
 			</div>
 		</ChatProvider>

@@ -4,6 +4,7 @@ import type React from 'react';
 export type User = components['schemas']['UserDto'];
 export type FoundUser = components['schemas']['FoundUserDto'];
 export type Team = components['schemas']['TeamDto'];
+export type Conversation = components['schemas']['ConversationDto'];
 
 export type SVGComponent = React.ComponentType<React.ComponentProps<'svg'>>;
 
