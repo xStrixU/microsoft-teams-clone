@@ -6,11 +6,25 @@ import { mapAppMessageToMessageDto } from './conversations.mapper';
 import { PrismaService } from '@/database/prisma/prisma.service';
 import { isPrismaError } from '@/database/prisma/prisma.utils';
 
-import type { AppMessage } from './conversations.types';
+import type { AppConversation, AppMessage } from './conversations.types';
 import type { CreateConversationDto } from './dto/create-conversation.dto';
 import type { CreateMessageDto } from './dto/create-message.dto';
 import type { getMessagesQueryDto } from './dto/get-messages-query.dto';
-import type { Conversation, Prisma, User } from '@prisma/client';
+import type { Prisma, User } from '@prisma/client';
+
+export const createConversationInclude = (user: User) =>
+	({
+		members: {
+			where: {
+				NOT: {
+					memberId: user.id,
+				},
+			},
+			include: {
+				member: true,
+			},
+		},
+	} satisfies Prisma.ConversationInclude);
 
 export const messageInclude = {
 	author: true,
@@ -23,7 +37,7 @@ export class ConversationsService {
 		private readonly gateway: ConversationsGateway
 	) {}
 
-	async create({ memberIds }: CreateConversationDto, user: User): Promise<Conversation> {
+	async create({ memberIds }: CreateConversationDto, user: User): Promise<AppConversation> {
 		try {
 			const conversation = await this.prisma.conversation.create({
 				data: {
@@ -31,6 +45,7 @@ export class ConversationsService {
 						create: [{ memberId: user.id }, ...memberIds.map(memberId => ({ memberId }))],
 					},
 				},
+				include: createConversationInclude(user),
 			});
 
 			return conversation;
@@ -115,7 +130,7 @@ export class ConversationsService {
 		}
 	}
 
-	findAllBy(where: Prisma.ConversationWhereInput): Promise<Conversation[]> {
-		return this.prisma.conversation.findMany({ where });
+	findAllBy(where: Prisma.ConversationWhereInput, user: User): Promise<AppConversation[]> {
+		return this.prisma.conversation.findMany({ where, include: createConversationInclude(user) });
 	}
 }

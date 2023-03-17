@@ -4,4 +4,5 @@ export class MessageDto {
 	id: number;
 	author: FoundUserDto;
 	content: string;
+	createdAt: number;
 }
