@@ -3,8 +3,8 @@ import { ApiConflictResponse, ApiCreatedResponse, ApiOkResponse, ApiTags } from 
 import { User } from '@prisma/client';
 
 import {
+	mapAppConversationToConversationDto,
 	mapAppMessageToMessageDto,
-	mapConversationToConversationDto,
 } from './conversations.mapper';
 import { ConversationsService } from './conversations.service';
 import { ConversationDto } from './dto/conversation.dto';
@@ -36,7 +36,7 @@ export class ConversationsController {
 		@Body() createConversationDto: CreateConversationDto,
 		@AuthUser() user: User
 	): Promise<ConversationDto> {
-		return mapConversationToConversationDto(
+		return mapAppConversationToConversationDto(
 			await this.conversationsService.create(createConversationDto, user)
 		);
 	}

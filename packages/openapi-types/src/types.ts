@@ -63,7 +63,9 @@ export interface components {
 		};
 		ConversationDto: {
 			id: string;
-			name: string | null;
+			isGroup: boolean;
+			user?: components['schemas']['FoundUserDto'];
+			name?: string;
 		};
 		CreateTeamDto: {
 			name: string;
@@ -79,6 +81,7 @@ export interface components {
 			id: number;
 			author: components['schemas']['FoundUserDto'];
 			content: string;
+			createdAt: number;
 		};
 		CreateSessionDto: {
 			email: string;

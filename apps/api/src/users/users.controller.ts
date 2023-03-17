@@ -12,7 +12,7 @@ import { UsersService } from './users.service';
 import { Auth } from '@/auth/auth.decorator';
 import { AuthUser } from '@/auth/auth-user.decorator';
 import { OpenAPIHttpException } from '@/common/openapi/openapi-http-exception';
-import { mapConversationToConversationDto } from '@/conversations/conversations.mapper';
+import { mapAppConversationToConversationDto } from '@/conversations/conversations.mapper';
 import { ConversationsService } from '@/conversations/conversations.service';
 import { ConversationDto } from '@/conversations/dto/conversation.dto';
 import { TeamDto } from '@/teams/dto/team.dto';
@@ -81,14 +81,17 @@ export class UsersController {
 		description: "Returns a list of the current user's conversations",
 	})
 	async findAllConversations(@AuthUser() user: User): Promise<ConversationDto[]> {
-		const conversations = await this.conversationsService.findAllBy({
-			members: {
-				some: {
-					memberId: user.id,
+		const conversations = await this.conversationsService.findAllBy(
+			{
+				members: {
+					some: {
+						memberId: user.id,
+					},
 				},
 			},
-		});
+			user
+		);
 
-		return conversations.map(mapConversationToConversationDto);
+		return conversations.map(mapAppConversationToConversationDto);
 	}
 }
