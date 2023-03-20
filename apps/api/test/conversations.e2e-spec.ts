@@ -97,7 +97,9 @@ describe('Conversations', () => {
 		let lastMessage: MessageDto;
 
 		it('should return the last 10 messages', async () => {
-			const { status, body } = await agent.get(`/conversations/${conversationId}/messages`).send();
+			const { status, body } = await agent
+				.get(`/conversations/${conversationId}/messages?limit=10`)
+				.send();
 
 			expect(status).toBe(HttpStatus.OK);
 
