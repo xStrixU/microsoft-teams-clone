@@ -223,6 +223,7 @@ export interface operations {
 	ConversationsController_getMessages: {
 		parameters: {
 			query?: {
+				limit?: number;
 				before?: number;
 			};
 			path: {
