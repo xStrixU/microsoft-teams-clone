@@ -110,7 +110,7 @@ export class ConversationsService {
 			include: messageInclude,
 		});
 
-		return messages.reverse();
+		return messages;
 	}
 
 	private async checkIfUserIsInConversation(user: User, conversationId: string): Promise<void> {

@@ -101,11 +101,14 @@ describe('Conversations', () => {
 
 			expect(status).toBe(HttpStatus.OK);
 
-			messages.slice(-10).forEach((message, i) => {
-				expect(body[i].content).toBe(message.content);
-			});
+			messages
+				.slice(-10)
+				.reverse()
+				.forEach((message, i) => {
+					expect(body[i].content).toBe(message.content);
+				});
 
-			lastMessage = body[0];
+			lastMessage = body[body.length - 1];
 		});
 
 		it('should return the next 5 messages', async () => {
@@ -115,9 +118,12 @@ describe('Conversations', () => {
 
 			expect(status).toBe(HttpStatus.OK);
 
-			messages.slice(-15, -10).forEach((message, i) => {
-				expect(body[i].content).toBe(message.content);
-			});
+			messages
+				.slice(-15, -10)
+				.reverse()
+				.forEach((message, i) => {
+					expect(body[i].content).toBe(message.content);
+				});
 		});
 	});
 });
