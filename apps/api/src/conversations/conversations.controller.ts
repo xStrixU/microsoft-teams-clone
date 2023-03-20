@@ -10,7 +10,7 @@ import { ConversationsService } from './conversations.service';
 import { ConversationDto } from './dto/conversation.dto';
 import { CreateConversationDto } from './dto/create-conversation.dto';
 import { CreateMessageDto } from './dto/create-message.dto';
-import { getMessagesQueryDto } from './dto/get-messages-query.dto';
+import { GetMessagesQueryDto } from './dto/get-messages-query.dto';
 import { MessageDto } from './dto/message.dto';
 
 import { Auth } from '@/auth/auth.decorator';
@@ -73,7 +73,7 @@ export class ConversationsController {
 	})
 	async getMessages(
 		@Param('id') id: string,
-		@Query() query: getMessagesQueryDto,
+		@Query() query: GetMessagesQueryDto,
 		@AuthUser() user: User
 	): Promise<MessageDto[]> {
 		const messages = await this.conversationsService.getMessages(id, query, user);

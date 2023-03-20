@@ -9,7 +9,7 @@ import { isPrismaError } from '@/database/prisma/prisma.utils';
 import type { AppConversation, AppMessage } from './conversations.types';
 import type { CreateConversationDto } from './dto/create-conversation.dto';
 import type { CreateMessageDto } from './dto/create-message.dto';
-import type { getMessagesQueryDto } from './dto/get-messages-query.dto';
+import type { GetMessagesQueryDto } from './dto/get-messages-query.dto';
 import type { Prisma, User } from '@prisma/client';
 
 export const createConversationInclude = (user: User) =>
@@ -91,7 +91,7 @@ export class ConversationsService {
 
 	async getMessages(
 		conversationId: string,
-		{ limit, before }: getMessagesQueryDto,
+		{ limit = 30, before }: GetMessagesQueryDto,
 		user: User
 	): Promise<AppMessage[]> {
 		await this.checkIfUserIsInConversation(user, conversationId);

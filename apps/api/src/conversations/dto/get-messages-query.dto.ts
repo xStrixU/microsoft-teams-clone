@@ -1,11 +1,12 @@
 import { Type } from 'class-transformer';
 import { IsNumber, IsOptional, Min } from 'class-validator';
 
-export class getMessagesQueryDto {
+export class GetMessagesQueryDto {
+	@IsOptional()
 	@IsNumber()
 	@Min(0)
 	@Type(() => Number)
-	limit = 10;
+	limit?: number;
 
 	@IsOptional()
 	@IsNumber()
