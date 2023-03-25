@@ -24,7 +24,7 @@ export const MessageInput = ({ isNewChat }: MessageInputProps) => {
 	};
 
 	return (
-		<form onSubmit={handleSubmit} className="mt-auto flex w-full flex-col">
+		<form onSubmit={handleSubmit} className="mx-auto mt-auto flex w-full max-w-4xl flex-col">
 			<Input placeholder="Type a new message" />
 			<button
 				type="submit"

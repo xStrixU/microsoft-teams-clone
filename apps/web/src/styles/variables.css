@@ -1,4 +1,7 @@
 :root {
+	--header-height: 48px;
+	--chat-header-height: 64px;
+
 	--color-neutral-background: #fff;
 	--color-neutral-background-hover: #f5f5f5;
 	--color-neutral-background-pressed: #e0e0e0;
@@ -37,6 +40,9 @@
 	--color-link-hover: #444791;
 	--color-link-pressed: #383966;
 	--color-link-selected: #4f52b2;
+
+	--message-background: #fff;
+	--message-background-mine: #e8ebfa;
 }
 
 :root.dark {
@@ -78,4 +84,7 @@
 	--color-link-hover: #9299f7;
 	--color-link-pressed: #7579eb;
 	--color-link-selected: #7f85f5;
+
+	--message-background: #292929;
+	--message-background-mine: #2f2f4a;
 }
