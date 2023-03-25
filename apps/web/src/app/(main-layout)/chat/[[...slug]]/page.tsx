@@ -11,9 +11,14 @@ export const metadata = {
 };
 
 const ChatPage = ({ params: { slug } }: ChatPageProps) => {
-	const isNewChat = slug?.[0] === 'new';
+	const conversationId = slug?.[0] || null;
+	const isNewChat = conversationId === 'new';
 
-	return <Chat isNewChat={isNewChat} />;
+	if (!conversationId) {
+		return null;
+	}
+
+	return <Chat isNewChat={isNewChat} conversationId={conversationId} />;
 };
 
 export default ChatPage;

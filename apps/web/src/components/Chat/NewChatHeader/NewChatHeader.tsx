@@ -41,7 +41,7 @@ export const NewChatHeader = () => {
 			{isGroupNameOpen && selectedUsers.length > 1 && (
 				<label
 					className={twMerge(
-						'relative flex h-16 items-center gap-2 px-8 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:rounded-full after:bg-neutral-stroke-disabled after:px-4',
+						'relative flex h-chat-header items-center gap-2 px-8 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:rounded-full after:bg-neutral-stroke-disabled after:px-4',
 						isGroupNameInputFocus && 'after:bg-brand-default'
 					)}
 				>

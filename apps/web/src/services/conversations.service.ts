@@ -6,3 +6,7 @@ export const getCurrentUserConversations = fetcher
 	.create();
 
 export const createConversation = fetcher.path('/conversations').method('post').create();
+
+export const getMessages = fetcher.path('/conversations/{id}/messages').method('get').create();
+
+export const createMessage = fetcher.path('/conversations/{id}/messages').method('post').create();

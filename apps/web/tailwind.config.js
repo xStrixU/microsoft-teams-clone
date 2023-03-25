@@ -19,6 +19,10 @@ module.exports = {
 					pressed: 'var(--color-link-pressed)',
 					selected: 'var(--color-link-selected)',
 				},
+				message: {
+					background: 'var(--message-background)',
+					'background-mine': 'var(--message-background-mine)',
+				},
 				neutral: {
 					background: {
 						default: 'var(--color-neutral-background)',
@@ -57,7 +61,17 @@ module.exports = {
 			fontFamily: {
 				sans: ['var(--font-noto-sans)', ...defaultTheme.fontFamily.sans],
 			},
+			height: {
+				header: 'var(--header-height)',
+				content: 'calc(100vh - var(--header-height))',
+				'chat-header': 'var(--chat-header-height)',
+				'chat-content': 'calc(100% - var(--chat-header-height))',
+			},
 		},
 	},
-	plugins: [],
+	plugins: [
+		require('tailwind-scrollbar')({
+			nocompatible: true,
+		}),
+	],
 };
