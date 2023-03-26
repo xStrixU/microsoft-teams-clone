@@ -107,6 +107,9 @@ export class ConversationsService {
 			orderBy: {
 				createdAt: 'desc',
 			},
+			where: {
+				conversationId,
+			},
 			include: messageInclude,
 		});
 
