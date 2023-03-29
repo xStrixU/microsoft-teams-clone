@@ -9,7 +9,7 @@ import { SelectedUser } from './SelectedUser';
 import GroupIcon from '~/icons/group.svg';
 
 import { useDebounce } from '@/hooks/useDebounce';
-import { useChatContext } from '@/providers/ChatProvider';
+import { useConversationContext } from '@/providers/ConversationProvider';
 
 import type { ChangeEvent } from 'react';
 
@@ -21,7 +21,7 @@ export const NewChatHeader = () => {
 	const [isToInputChanging, setIsToInputChanging] = useState(false);
 	const [isGroupNameOpen, setIsGroupNameOpen] = useState(false);
 	const [isGroupNameInputFocus, setIsGroupNameInputFocus] = useState(false);
-	const { selectedUsers, addSelectedUser, groupName, setGroupName } = useChatContext();
+	const { selectedUsers, addSelectedUser, groupName, setGroupName } = useConversationContext();
 	const debouncedInputValue = useDebounce(toInputValue, 500);
 
 	const handleToInputChange = ({ target }: ChangeEvent<HTMLInputElement>) => {

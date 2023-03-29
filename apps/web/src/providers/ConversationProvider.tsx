@@ -1,29 +1,36 @@
 'use client';
 
-import { useState } from 'react';
+import { useSelectedLayoutSegment } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 import { createSafeContext } from '@/lib/createSafeContext';
 import * as conversationsService from '@/services/conversations.service';
 
 import type { Dispatch, ReactNode, SetStateAction } from 'react';
 
-import type { FoundUser } from '@/types';
+import type { ConversationMessage, FoundUser } from '@/types';
 
-interface ChatContextValue {
+interface ConversationContextValue {
+	conversationId: string | null;
 	selectedUsers: FoundUser[];
 	groupName: string;
+	messages: ConversationMessage[];
 
 	addSelectedUser: (user: FoundUser) => void;
 	removeSelectedUser: (user: FoundUser) => void;
 	setGroupName: Dispatch<SetStateAction<string>>;
 	createConversation: () => Promise<void>;
+	addMessages: (newMessages: ConversationMessage[]) => void;
 }
 
-const [useChatContext, ChatContextProvider] = createSafeContext<ChatContextValue>();
+const [useConversationContext, ConversationContextProvider] =
+	createSafeContext<ConversationContextValue>();
 
-const ChatProvider = ({ children }: { readonly children: ReactNode }) => {
+const ConversationProvider = ({ children }: { readonly children: ReactNode }) => {
+	const conversationId = useSelectedLayoutSegment();
 	const [selectedUsers, setSelectedUsers] = useState<FoundUser[]>([]);
 	const [groupName, setGroupName] = useState('');
+	const [messages, setMessages] = useState<ConversationMessage[]>([]);
 
 	const addSelectedUser = (user: FoundUser) => {
 		setSelectedUsers([user, ...selectedUsers]);
@@ -43,20 +50,35 @@ const ChatProvider = ({ children }: { readonly children: ReactNode }) => {
 		setSelectedUsers([]);
 	};
 
+	const addMessages = (newMessages: ConversationMessage[]) => {
+		const filteredMessages = newMessages.filter(
+			message => !messages.find(({ id }) => message.id === id)
+		);
+
+		setMessages(messages => [...messages, ...filteredMessages]);
+	};
+
+	useEffect(() => {
+		setMessages([]);
+	}, [conversationId]);
+
 	return (
-		<ChatContextProvider
+		<ConversationContextProvider
 			value={{
+				conversationId,
 				selectedUsers,
 				groupName,
+				messages,
 				addSelectedUser,
 				removeSelectedUser,
 				setGroupName,
 				createConversation,
+				addMessages,
 			}}
 		>
 			{children}
-		</ChatContextProvider>
+		</ConversationContextProvider>
 	);
 };
 
-export { ChatProvider, useChatContext };
+export { ConversationProvider, useConversationContext };

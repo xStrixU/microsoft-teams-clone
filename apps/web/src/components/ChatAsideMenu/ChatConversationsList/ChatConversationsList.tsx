@@ -6,17 +6,13 @@ import { ChatConversation } from './ChatConversation';
 import { NewChatConversation } from './NewChatConversation';
 
 import { useGetAllConversations } from '@/hooks/useGetAllConversations';
+import { useConversationContext } from '@/providers/ConversationProvider';
 
-type ChatConversationsListProps = Readonly<{
-	conversationId: string | null;
-	isNewChat: boolean;
-}>;
-
-export const ChatConversationsList = ({
-	conversationId,
-	isNewChat,
-}: ChatConversationsListProps) => {
+export const ChatConversationsList = () => {
+	const { conversationId } = useConversationContext();
 	const { conversations } = useGetAllConversations();
+
+	const isNewChat = conversationId === 'new';
 
 	if (!conversations.length && !isNewChat) {
 		return (
