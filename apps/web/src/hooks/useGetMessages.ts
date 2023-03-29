@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
+import { useConversationContext } from '@/providers/ConversationProvider';
 import { getMessages } from '@/services/conversations.service';
 
 export const useGetMessages = ({
@@ -11,8 +12,9 @@ export const useGetMessages = ({
 	limit?: number;
 	before?: number;
 }) => {
-	const { data: messages = [], ...rest } = useQuery({
-		queryKey: ['messages', conversationId, limit, before],
+	const { addMessages } = useConversationContext();
+	const query = useQuery({
+		queryKey: ['messages', conversationId],
 		queryFn: async () => {
 			const { data } = await getMessages({
 				id: conversationId,
@@ -22,7 +24,8 @@ export const useGetMessages = ({
 
 			return data;
 		},
+		onSuccess: addMessages,
 	});
 
-	return { messages, ...rest };
+	return query;
 };

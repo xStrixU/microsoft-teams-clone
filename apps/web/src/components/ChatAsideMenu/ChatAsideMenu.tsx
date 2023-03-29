@@ -3,12 +3,7 @@ import { twMerge } from 'tailwind-merge';
 import { ChatAsideMenuHeader } from './ChatAsideMenuHeader';
 import { ChatConversationsList } from './ChatConversationsList/ChatConversationsList';
 
-type ChatAsideMenuProps = Readonly<{
-	conversationId: string | null;
-	isNewChat: boolean;
-}>;
-
-export const ChatAsideMenu = ({ conversationId, isNewChat }: ChatAsideMenuProps) => (
+export const ChatAsideMenu = () => (
 	<aside
 		className={twMerge(
 			'relative h-full w-72 bg-neutral-background-disabled',
@@ -16,6 +11,6 @@ export const ChatAsideMenu = ({ conversationId, isNewChat }: ChatAsideMenuProps)
 		)}
 	>
 		<ChatAsideMenuHeader />
-		<ChatConversationsList conversationId={conversationId} isNewChat={isNewChat} />
+		<ChatConversationsList />
 	</aside>
 );

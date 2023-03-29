@@ -1,10 +1,13 @@
 'use client';
 
+import { useState } from 'react';
+
 import { Input } from '../ui/Inputs/Input/Input';
 
 import SendIcon from '~/icons/send.svg';
 
-import { useChatContext } from '@/providers/ChatProvider';
+import { useConversationContext } from '@/providers/ConversationProvider';
+import { createMessage } from '@/services/conversations.service';
 
 import type { FormEvent } from 'react';
 
@@ -13,19 +16,29 @@ type MessageInputProps = Readonly<{
 }>;
 
 export const MessageInput = ({ isNewChat }: MessageInputProps) => {
-	const { createConversation } = useChatContext();
+	const [inputValue, setInputValue] = useState('');
+	const { createConversation, conversationId } = useConversationContext();
 
-	const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 
 		if (isNewChat) {
-			createConversation();
+			await createConversation();
+		}
+
+		if (conversationId) {
+			await createMessage({ id: conversationId, content: inputValue });
+			setInputValue('');
 		}
 	};
 
 	return (
 		<form onSubmit={handleSubmit} className="mx-auto mt-auto flex w-full max-w-4xl flex-col">
-			<Input placeholder="Type a new message" />
+			<Input
+				placeholder="Type a new message"
+				value={inputValue}
+				onChange={({ target }) => setInputValue(target.value)}
+			/>
 			<button
 				type="submit"
 				className="hover:fill-icon ml-auto w-fit p-2 text-neutral-foreground hover:text-brand-default dark:hover:text-link-default"

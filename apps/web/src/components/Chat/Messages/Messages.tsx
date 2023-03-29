@@ -4,13 +4,16 @@ import { MessageGroup } from './MessageGroup';
 
 import { useGetMessages } from '@/hooks/useGetMessages';
 import { groupMessages } from '@/lib/messages';
+import { useConversationContext } from '@/providers/ConversationProvider';
 
 type MessagesProps = Readonly<{
 	conversationId: string;
 }>;
 
 export const Messages = ({ conversationId }: MessagesProps) => {
-	const { messages } = useGetMessages({ conversationId });
+	useGetMessages({ conversationId });
+
+	const { messages } = useConversationContext();
 	const groupedMessages = groupMessages(messages);
 
 	return (

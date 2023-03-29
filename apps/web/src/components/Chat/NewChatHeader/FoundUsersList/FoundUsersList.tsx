@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { FoundUser } from './FoundUser';
 
 import { useGetUsers } from '@/hooks/useGetUsers';
-import { useChatContext } from '@/providers/ChatProvider';
+import { useConversationContext } from '@/providers/ConversationProvider';
 
 import type { FoundUser as FoundUserType } from '@/types';
 
@@ -19,7 +19,7 @@ export const FoundUsersList = ({
 	handleFoundUserClick,
 }: FoundUsersListProps) => {
 	const { users, refetchUsers, isLoading } = useGetUsers(value);
-	const { selectedUsers } = useChatContext();
+	const { selectedUsers } = useConversationContext();
 	const filteredUsers = users?.filter(
 		user => !selectedUsers.find(selectedUser => selectedUser.id === user.id)
 	);

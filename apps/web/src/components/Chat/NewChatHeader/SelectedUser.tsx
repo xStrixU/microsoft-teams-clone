@@ -2,7 +2,7 @@ import CloseIcon from '~/icons/close.svg';
 
 import { UserAvatar } from '@/components/UserAvatar/UserAvatar';
 
-import { useChatContext } from '@/providers/ChatProvider';
+import { useConversationContext } from '@/providers/ConversationProvider';
 
 import type { FoundUser } from '@/types';
 
@@ -11,7 +11,7 @@ type SelectedUserProps = Readonly<{
 }>;
 
 export const SelectedUser = ({ user }: SelectedUserProps) => {
-	const { removeSelectedUser } = useChatContext();
+	const { removeSelectedUser } = useConversationContext();
 
 	return (
 		<div className="flex h-8 cursor-pointer items-center rounded-full bg-neutral-background-disabled pr-3.5 hover:bg-neutral-background-selected">
