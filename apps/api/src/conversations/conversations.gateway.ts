@@ -6,6 +6,7 @@ import type { MessageDto } from './dto/message.dto';
 export const CONVERSATION_ROOM_PREFIX = 'conversation:';
 
 @WebSocketGateway({
+	cors: true,
 	namespace: 'conversations',
 })
 export class ConversationsGateway {
