@@ -1,6 +1,6 @@
+import { ChatHeader } from './ChatHeader';
 import { MessageInput } from './MessageInput';
 import { Messages } from './Messages/Messages';
-import { ChatHeader } from './NewChatHeader/ChatHeader';
 import { NewChatHeader } from './NewChatHeader/NewChatHeader';
 
 type ChatProps = Readonly<{
