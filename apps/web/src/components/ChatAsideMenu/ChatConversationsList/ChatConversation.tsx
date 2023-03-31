@@ -1,8 +1,8 @@
 import { BaseChatConversation } from './BaseChatConversation';
 
-import NewChatIcon from '~/icons/new-chat.svg';
+import { ConversationImage } from '@/components/ConversationImage';
 
-import { UserAvatar } from '@/components/UserAvatar/UserAvatar';
+import { getConversationName } from '@/lib/conversations';
 
 import type { Conversation } from '@/types';
 
@@ -12,12 +12,13 @@ type ChatConversationProps = Readonly<{
 }>;
 
 export const ChatConversation = ({ conversation, isActive }: ChatConversationProps) => {
-	const image = conversation.user ? (
-		<UserAvatar user={conversation.user} />
-	) : (
-		<NewChatIcon className="rounded-full text-neutral-foreground-inverted" />
-	);
-	const name = conversation.user ? conversation.user.fullName : conversation.name ?? '';
+	const name = getConversationName(conversation);
 
-	return <BaseChatConversation image={image} name={name} isActive={isActive} />;
+	return (
+		<BaseChatConversation
+			image={<ConversationImage conversation={conversation} />}
+			name={name}
+			isActive={isActive}
+		/>
+	);
 };

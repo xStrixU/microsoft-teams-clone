@@ -3,15 +3,17 @@
 import { useSelectedLayoutSegment } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
+import { useGetAllConversations } from '@/hooks/useGetAllConversations';
 import { createSafeContext } from '@/lib/createSafeContext';
 import * as conversationsService from '@/services/conversations.service';
 
 import type { Dispatch, ReactNode, SetStateAction } from 'react';
 
-import type { ConversationMessage, FoundUser } from '@/types';
+import type { Conversation, ConversationMessage, FoundUser } from '@/types';
 
 interface ConversationContextValue {
 	conversationId: string | null;
+	activeConversation: Conversation | null;
 	selectedUsers: FoundUser[];
 	groupName: string;
 	messages: ConversationMessage[];
@@ -28,9 +30,13 @@ const [useConversationContext, ConversationContextProvider] =
 
 const ConversationProvider = ({ children }: { readonly children: ReactNode }) => {
 	const conversationId = useSelectedLayoutSegment();
+	const { conversations } = useGetAllConversations();
 	const [selectedUsers, setSelectedUsers] = useState<FoundUser[]>([]);
 	const [groupName, setGroupName] = useState('');
 	const [messages, setMessages] = useState<ConversationMessage[]>([]);
+
+	const activeConversation =
+		conversations.find(conversation => conversation.id === conversationId) ?? null;
 
 	const addSelectedUser = (user: FoundUser) => {
 		setSelectedUsers([user, ...selectedUsers]);
@@ -66,6 +72,7 @@ const ConversationProvider = ({ children }: { readonly children: ReactNode }) =>
 		<ConversationContextProvider
 			value={{
 				conversationId,
+				activeConversation,
 				selectedUsers,
 				groupName,
 				messages,

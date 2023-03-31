@@ -8,6 +8,7 @@ const sizes = {
 	small: 'h-7 min-w-[64px] text-xs font-normal',
 	medium: 'h-9 min-w-[96px] text-sm',
 	large: 'h-11 min-w-[96px] text-base',
+	icon: 'h-7 w-7 p-0',
 } as const;
 
 const shapes = {
@@ -53,6 +54,7 @@ export const Button = <C extends ElementType>({
 			sizes[size],
 			shapes[shape],
 			appearances[appearance],
+			size === 'icon' && 'flex items-center justify-center',
 			fill && 'w-full',
 			className
 		)}
