@@ -2,10 +2,10 @@ import { twMerge } from 'tailwind-merge';
 
 import { ActiveLink } from './ActiveLink';
 
-import ActivityIcon from '~/icons/activity.svg';
-import CalendarIcon from '~/icons/calendar.svg';
-import ChatIcon from '~/icons/chat.svg';
-import TeamsIcon from '~/icons/teams.svg';
+import ActivityIcon from '@/assets/icons/activity.svg';
+import CalendarIcon from '@/assets/icons/calendar.svg';
+import ChatIcon from '@/assets/icons/chat.svg';
+import TeamsIcon from '@/assets/icons/teams.svg';
 
 const navItems = [
 	{

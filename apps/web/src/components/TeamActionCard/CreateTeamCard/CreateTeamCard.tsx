@@ -6,13 +6,13 @@ import { useState } from 'react';
 import { TeamActionCard } from '../TeamActionCard';
 import { CreateTeamModal } from './CreateTeamModal';
 
-import CreateTeamIcon from '~/icons/create-team.svg';
-import CreateTeamCardIcon from '~/icons/create-team-card.svg';
-import Avatar1 from '~/images/avatars/avatar1.png';
-import Avatar2 from '~/images/avatars/avatar2.png';
-import Avatar3 from '~/images/avatars/avatar3.png';
-
 import { Button } from '@/components/ui/Button/Button';
+
+import CreateTeamIcon from '@/assets/icons/create-team.svg';
+import CreateTeamCardIcon from '@/assets/icons/create-team-card.svg';
+import Avatar1 from '@/assets/images/avatars/avatar1.png';
+import Avatar2 from '@/assets/images/avatars/avatar2.png';
+import Avatar3 from '@/assets/images/avatars/avatar3.png';
 
 export const CreateTeamCard = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false);

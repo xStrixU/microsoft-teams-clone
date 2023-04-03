@@ -1,8 +1,8 @@
 import { forwardRef } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-import CheckIcon from '~/icons/check.svg';
-import CheckLargeIcon from '~/icons/check-large.svg';
+import CheckIcon from '@/assets/icons/check.svg';
+import CheckLargeIcon from '@/assets/icons/check-large.svg';
 
 const sizes = {
 	medium: 'w-4 h-4',

@@ -1,6 +1,6 @@
 import { twMerge } from 'tailwind-merge';
 
-import ErrorIcon from '~/icons/error.svg';
+import ErrorIcon from '@/assets/icons/error.svg';
 
 import type { ReactNode } from 'react';
 import type { FieldError } from 'react-hook-form';

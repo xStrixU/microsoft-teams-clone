@@ -5,18 +5,18 @@ import { ROOT_STYLES, RootInput } from '../RootInput';
 
 import type { ComponentProps, ReactNode } from 'react';
 
+const sizes: Record<Exclude<InputProps['size'], undefined>, string> = {
+	small: 'h-7 px-1.5',
+	medium: 'h-9 px-2.5',
+	large: 'h-11 px-3',
+};
+
 type InputProps = Readonly<{
 	contentBefore?: ReactNode;
 	contentAfter?: ReactNode;
 }> &
 	Omit<ComponentProps<typeof RootInput>, 'id' | 'children'> &
 	Omit<JSX.IntrinsicElements['input'], 'size'>;
-
-const sizes: Record<Exclude<InputProps['size'], undefined>, string> = {
-	small: 'h-7 px-1.5',
-	medium: 'h-9 px-2.5',
-	large: 'h-11 px-3',
-};
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
 	(

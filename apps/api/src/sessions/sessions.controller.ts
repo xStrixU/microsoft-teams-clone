@@ -53,13 +53,13 @@ export class SessionsController {
 
 	@Delete('me')
 	@ApiNoContentResponse({
-		description: 'The current session has been created',
+		description: 'The current session has been deleted',
 	})
-	async deleteCurrent(
+	deleteCurrent(
 		@Res({ passthrough: true }) response: Response,
 		@Session() session: ExpressSession
-	): Promise<void> {
-		await new Promise<void>((resolve, reject) => {
+	) {
+		return new Promise<void>((resolve, reject) => {
 			session.destroy(err => {
 				if (err) {
 					return reject(err);

@@ -1,6 +1,6 @@
 import { BaseChatConversation } from './BaseChatConversation';
 
-import NewChatIcon from '~/icons/new-chat.svg';
+import NewChatIcon from '@/assets/icons/new-chat.svg';
 
 export const NewChatConversation = () => (
 	<BaseChatConversation

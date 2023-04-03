@@ -5,7 +5,7 @@ import { AppModule } from './app.module';
 import { setupApp } from './common/setups/app.setup';
 import { setupSwagger } from './common/setups/swagger.setup';
 
-import type { AppConfigService } from './app.types';
+import type { AppConfigService } from './app.config';
 
 async function bootstrap() {
 	const app = await NestFactory.create(AppModule);

@@ -1,4 +1,4 @@
-import AvailableBadgeIcon from '~/icons/badge/available.svg';
+import AvailableBadgeIcon from '@/assets/icons/badge/available.svg';
 
 import type { SVGComponent } from '@/types';
 

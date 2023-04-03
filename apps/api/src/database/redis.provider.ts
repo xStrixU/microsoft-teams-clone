@@ -3,13 +3,12 @@ import { createClient } from 'redis';
 
 import type { FactoryProvider } from '@nestjs/common';
 
-import type { AppConfigService } from '@/app.types';
+import type { AppConfigService } from '@/app.config';
 
 export const REDIS_TOKEN = Symbol('REDIS');
 
 export const redisProvider: FactoryProvider = {
 	provide: REDIS_TOKEN,
-	inject: [ConfigService],
 	useFactory: async (configService: AppConfigService) => {
 		const client = createClient({
 			url: configService.get('REDIS_URL', { infer: true }),
@@ -19,4 +18,5 @@ export const redisProvider: FactoryProvider = {
 
 		return client;
 	},
+	inject: [ConfigService],
 };

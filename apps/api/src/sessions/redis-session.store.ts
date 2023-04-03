@@ -4,7 +4,7 @@ import { RedisClientType } from 'redis';
 
 import { SESSION_MAX_AGE } from './sessions.constants';
 
-import { REDIS_TOKEN } from '@/database/redis/redis.provider';
+import { REDIS_TOKEN } from '@/database/redis.provider';
 
 import type { SessionData } from 'express-session';
 

@@ -12,13 +12,12 @@ export const metadata = {
 
 const ChatPage = ({ params: { slug } }: ChatPageProps) => {
 	const conversationId = slug?.[0] || null;
-	const isNewChat = conversationId === 'new';
 
 	if (!conversationId) {
 		return null;
 	}
 
-	return <Chat isNewChat={isNewChat} conversationId={conversationId} />;
+	return <Chat conversationId={conversationId} />;
 };
 
 export default ChatPage;

@@ -13,13 +13,13 @@ import { Input } from '@/components/ui/Inputs/Input/Input';
 import { PasswordInput } from '@/components/ui/Inputs/PasswordInput/PasswordInput';
 
 import { useUser } from '@/hooks/useUser';
-import { useYupForm } from '@/hooks/useYupForm';
+import { useZodForm } from '@/hooks/useZodForm';
 import { createUser } from '@/services/users.service';
 
 export const SignUpForm = () => {
 	const router = useRouter();
 	const { register: registerUser } = useUser();
-	const { onSubmit, register, setError } = useYupForm(signUpFormSchema, data => {
+	const { onSubmit, register, setError } = useZodForm(signUpFormSchema, data => {
 		registerUser.mutate(data, {
 			onSuccess: () => {
 				toast.success('Signed up successfully');

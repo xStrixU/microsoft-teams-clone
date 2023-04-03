@@ -1,7 +1,6 @@
-import CloseIcon from '~/icons/close.svg';
-
 import { UserAvatar } from '@/components/UserAvatar/UserAvatar';
 
+import CloseIcon from '@/assets/icons/close.svg';
 import { useConversationContext } from '@/providers/ConversationProvider';
 
 import type { FoundUser } from '@/types';

@@ -2,14 +2,12 @@
 
 import { useEffect } from 'react';
 
-import { conversationsSocket } from '@/lib/conversationsSocket';
+import { conversationsSocket } from '@/lib/socket';
 import { useConversationContext } from '@/providers/ConversationProvider';
-
-import type { ReactNode } from 'react';
 
 import type { ConversationMessage } from '@/types';
 
-export const ConversationsSocket = ({ children }: { readonly children: ReactNode }) => {
+export const ConversationsSocket = () => {
 	const { conversationId, addMessages } = useConversationContext();
 
 	useEffect(() => {
@@ -34,5 +32,5 @@ export const ConversationsSocket = ({ children }: { readonly children: ReactNode
 		};
 	}, [addMessages]);
 
-	return <>{children}</>;
+	return null;
 };

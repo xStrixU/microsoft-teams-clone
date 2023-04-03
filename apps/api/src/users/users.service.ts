@@ -3,7 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import * as bcrypt from 'bcrypt';
 import emailValidator from 'email-validator';
 
-import { AppConfigService } from '@/app.types';
+import { AppConfigService } from '@/app.config';
 import { PrismaService } from '@/database/prisma/prisma.service';
 import { PrismaErrorCode } from '@/database/prisma/prisma.types';
 import { isPrismaError } from '@/database/prisma/prisma.utils';

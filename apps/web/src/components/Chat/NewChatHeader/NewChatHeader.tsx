@@ -6,8 +6,7 @@ import { twMerge } from 'tailwind-merge';
 import { FoundUsersList } from './FoundUsersList/FoundUsersList';
 import { SelectedUser } from './SelectedUser';
 
-import GroupIcon from '~/icons/group.svg';
-
+import GroupIcon from '@/assets/icons/group.svg';
 import { useDebounce } from '@/hooks/useDebounce';
 import { useConversationContext } from '@/providers/ConversationProvider';
 

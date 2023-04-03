@@ -4,8 +4,7 @@ import { useState } from 'react';
 
 import { Input } from '../ui/Inputs/Input/Input';
 
-import SendIcon from '~/icons/send.svg';
-
+import SendIcon from '@/assets/icons/send.svg';
 import { useConversationContext } from '@/providers/ConversationProvider';
 import { createMessage } from '@/services/conversations.service';
 

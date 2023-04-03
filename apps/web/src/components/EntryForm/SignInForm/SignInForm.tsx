@@ -10,12 +10,12 @@ import { Input } from '@/components/ui/Inputs/Input/Input';
 import { PasswordInput } from '@/components/ui/Inputs/PasswordInput/PasswordInput';
 
 import { useUser } from '@/hooks/useUser';
-import { useYupForm } from '@/hooks/useYupForm';
+import { useZodForm } from '@/hooks/useZodForm';
 import { createSession } from '@/services/sessions.service';
 
 export const SignInForm = () => {
 	const { login } = useUser();
-	const { onSubmit, register, setError } = useYupForm(signInFormSchema, data => {
+	const { onSubmit, register, setError } = useZodForm(signInFormSchema, data => {
 		login.mutate(data, {
 			onError: err => {
 				if (err instanceof createSession.Error) {

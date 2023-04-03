@@ -1,9 +1,9 @@
 import { TeamActionCard } from './TeamActionCard';
 
-import JoinCodeCardIcon from '~/icons/join-code-card.svg';
-
 import { Button } from '@/components/ui/Button/Button';
 import { Input } from '@/components/ui/Inputs/Input/Input';
+
+import JoinCodeCardIcon from '@/assets/icons/join-code-card.svg';
 
 export const JoinTeamByCodeCard = () => (
 	<TeamActionCard title="Join a team with a code" icon={JoinCodeCardIcon}>
