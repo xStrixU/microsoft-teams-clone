@@ -1,19 +1,19 @@
-import { USER_PASSWORD_REGEX, USER_PASSWORD_REGEX_MESSAGE } from 'common';
-import * as yup from 'yup';
+import { USER_PASSWORD_REGEX, USER_PASSWORD_REGEX_MESSAGE } from 'shared';
+import { z } from 'zod';
 
 import { SCHEMA_REQUIRED_MESSAGE } from '@/lib/constants';
 
-export const signUpFormSchema = yup
+export const signUpFormSchema = z
 	.object({
-		fullName: yup.string().required(SCHEMA_REQUIRED_MESSAGE),
-		email: yup.string().email('Invalid email').required(SCHEMA_REQUIRED_MESSAGE),
-		password: yup
+		fullName: z.string().nonempty(SCHEMA_REQUIRED_MESSAGE),
+		email: z.string().nonempty(SCHEMA_REQUIRED_MESSAGE).email('Invalid email'),
+		password: z
 			.string()
-			.required(SCHEMA_REQUIRED_MESSAGE)
-			.matches(USER_PASSWORD_REGEX, USER_PASSWORD_REGEX_MESSAGE),
-		confirmPassword: yup
-			.string()
-			.oneOf([yup.ref('password')], 'Passwords do not match')
-			.required(SCHEMA_REQUIRED_MESSAGE),
+			.nonempty(SCHEMA_REQUIRED_MESSAGE)
+			.regex(USER_PASSWORD_REGEX, USER_PASSWORD_REGEX_MESSAGE),
+		confirmPassword: z.string().nonempty(SCHEMA_REQUIRED_MESSAGE),
 	})
-	.required();
+	.refine(({ password, confirmPassword }) => password === confirmPassword, {
+		message: 'Passwords do not match',
+		path: ['confirmPassword'],
+	});

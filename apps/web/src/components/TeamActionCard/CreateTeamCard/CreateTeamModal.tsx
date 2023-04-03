@@ -1,5 +1,5 @@
 import { useRouter } from 'next/navigation';
-import * as yup from 'yup';
+import { z } from 'zod';
 
 import { Modal } from '@/components/Modal';
 import { Button } from '@/components/ui/Button/Button';
@@ -7,24 +7,22 @@ import { Input } from '@/components/ui/Inputs/Input/Input';
 import { Textarea } from '@/components/ui/Inputs/Textarea/Textarea';
 
 import { useTeams } from '@/hooks/useTeams';
-import { useYupForm } from '@/hooks/useYupForm';
+import { useZodForm } from '@/hooks/useZodForm';
 import { SCHEMA_REQUIRED_MESSAGE } from '@/lib/constants';
 
 import type { ComponentProps } from 'react';
 
 type CreateTeamModalProps = Omit<ComponentProps<typeof Modal>, 'title' | 'children'>;
 
-const schema = yup
-	.object({
-		name: yup.string().required(SCHEMA_REQUIRED_MESSAGE),
-		description: yup.string().default(''),
-	})
-	.required();
+const schema = z.object({
+	name: z.string().nonempty(SCHEMA_REQUIRED_MESSAGE),
+	description: z.string().default(''),
+});
 
 export const CreateTeamModal = (props: CreateTeamModalProps) => {
 	const { createTeam } = useTeams();
 	const router = useRouter();
-	const { onSubmit, register } = useYupForm(schema, data => {
+	const { onSubmit, register } = useZodForm(schema, data => {
 		createTeam.mutate(data, {
 			onSuccess: () => {
 				router.push('/teams');

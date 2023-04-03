@@ -7,7 +7,7 @@ import { SESSION_COOKIE_NAME, SESSION_MAX_AGE } from '@/sessions/sessions.consta
 
 import type { INestApplication } from '@nestjs/common';
 
-import type { AppConfigService } from '@/app.types';
+import type { AppConfigService } from '@/app.config';
 
 export const setupApp = (app: INestApplication) => {
 	const config = app.get<AppConfigService>(ConfigService);

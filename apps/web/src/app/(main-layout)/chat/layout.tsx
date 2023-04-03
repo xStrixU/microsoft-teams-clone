@@ -6,7 +6,8 @@ import type { ReactNode } from 'react';
 
 const ChatRootLayout = ({ children }: { readonly children: ReactNode }) => (
 	<ConversationProvider>
-		<ConversationsSocket>{children}</ConversationsSocket>
+		<ConversationsSocket />
+		{children}
 	</ConversationProvider>
 );
 

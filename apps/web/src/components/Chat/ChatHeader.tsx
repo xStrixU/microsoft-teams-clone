@@ -1,11 +1,10 @@
 'use client';
 
-import CallIcon from '~/icons/call.svg';
-import VideoCallIcon from '~/icons/video-call.svg';
-
 import { ConversationImage } from '@/components/ConversationImage';
 import { Button } from '@/components/ui/Button/Button';
 
+import CallIcon from '@/assets/icons/call.svg';
+import VideoCallIcon from '@/assets/icons/video-call.svg';
 import { getConversationName } from '@/lib/conversations';
 import { useConversationContext } from '@/providers/ConversationProvider';
 

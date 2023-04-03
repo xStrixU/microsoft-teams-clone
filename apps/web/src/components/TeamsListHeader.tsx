@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import { Button } from './ui/Button/Button';
 
-import CreateTeamIcon from '~/icons/create-team.svg';
+import CreateTeamIcon from '@/assets/icons/create-team.svg';
 
 export const TeamsListHeader = () => (
 	<header className="flex justify-between py-4 px-6">

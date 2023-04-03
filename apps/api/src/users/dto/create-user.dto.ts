@@ -1,5 +1,5 @@
 import { IsEmail, IsNotEmpty, Matches } from 'class-validator';
-import { USER_PASSWORD_REGEX } from 'common';
+import { USER_PASSWORD_REGEX } from 'shared';
 
 export class CreateUserDto {
 	@IsNotEmpty()

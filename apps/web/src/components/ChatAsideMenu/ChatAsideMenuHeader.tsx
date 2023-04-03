@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import ComposeIcon from '~/icons/compose.svg';
+import ComposeIcon from '@/assets/icons/compose.svg';
 
 export const ChatAsideMenuHeader = () => (
 	<div className="flex h-14 items-center justify-between border-b border-neutral-stroke-disabled px-4">

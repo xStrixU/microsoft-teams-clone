@@ -1,46 +1,24 @@
-'use client';
-
-import { useRef, useState } from 'react';
+import { Menu } from '@headlessui/react';
 import { twMerge } from 'tailwind-merge';
 
-import { DropdownMenuContextProvider } from './DropdownMenu.context';
-import { DropdownMenuContent } from './DropdownMenuContent';
 import { DropdownMenuDivider } from './DropdownMenuDivider';
 import { DropdownMenuItem } from './DropdownMenuItem';
-import { DropdownMenuTarget } from './DropdownMenuTarget';
-
-import { useWindowEvent } from '@/hooks/useWindowEvent';
+import { DropdownMenuItems } from './DropdownMenuItems';
 
 import type { ReactNode } from 'react';
 
 type DropdownMenuProps = Readonly<{
-	className?: string;
+	fullHeight?: boolean;
 	children: ReactNode;
 }>;
 
-export const DropdownMenu = ({ className, children }: DropdownMenuProps) => {
-	const [isOpen, setIsOpen] = useState(false);
-	const containerRef = useRef<HTMLDivElement | null>(null);
+export const DropdownMenu = ({ fullHeight, children }: DropdownMenuProps) => (
+	<Menu as="div" className={twMerge('relative', fullHeight && 'h-full')}>
+		{children}
+	</Menu>
+);
 
-	const toggle = () => setIsOpen(!isOpen);
-	const close = () => setIsOpen(false);
-
-	useWindowEvent('click', event => {
-		if (containerRef.current && !event.composedPath().includes(containerRef.current)) {
-			close();
-		}
-	});
-
-	return (
-		<DropdownMenuContextProvider value={{ isOpen, toggle, close }}>
-			<div ref={containerRef} className={twMerge('relative', className)}>
-				{children}
-			</div>
-		</DropdownMenuContextProvider>
-	);
-};
-
-DropdownMenu.Content = DropdownMenuContent;
+DropdownMenu.Button = Menu.Button;
 DropdownMenu.Divider = DropdownMenuDivider;
 DropdownMenu.Item = DropdownMenuItem;
-DropdownMenu.Target = DropdownMenuTarget;
+DropdownMenu.Items = DropdownMenuItems;

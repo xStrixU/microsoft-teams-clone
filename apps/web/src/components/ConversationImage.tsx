@@ -1,6 +1,6 @@
 import { UserAvatar } from './UserAvatar/UserAvatar';
 
-import NewChatIcon from '~/icons/new-chat.svg';
+import NewChatIcon from '@/assets/icons/new-chat.svg';
 
 import type { Conversation } from '@/types';
 

@@ -3,9 +3,8 @@
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
-import MicrosoftLogo from '~/images/microsoft-logo.svg';
-import TeamsLogo from '~/images/teams-logo.svg';
-
+import MicrosoftLogo from '@/assets/svg/microsoft-logo.svg';
+import TeamsLogo from '@/assets/svg/teams-logo.svg';
 import { useUser } from '@/hooks/useUser';
 
 import type { ReactNode } from 'react';
