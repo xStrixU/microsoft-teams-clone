@@ -5,7 +5,7 @@ import { groupMessages } from './messages';
 
 import type { ConversationMessage, FoundUser } from '@/types';
 
-describe('utils', () => {
+describe('messages', () => {
 	it('should group messages', () => {
 		const time = new Date().getTime();
 

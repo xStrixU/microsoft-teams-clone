@@ -2,6 +2,8 @@ import { twMerge } from 'tailwind-merge';
 
 import { UserAvatarBadge } from './UserAvatarBadge/UserAvatarBadge';
 
+import { getInitials } from '@/lib/utils';
+
 import type { ComponentProps } from 'react';
 
 const sizes = {
@@ -29,10 +31,7 @@ type UserAvatarProps = Readonly<{
 }>;
 
 export const UserAvatar = ({ user, size = 32, className, badge }: UserAvatarProps) => {
-	const initials = user.fullName
-		.split(' ')
-		.map(name => name[0])
-		.join('');
+	const initials = getInitials(user.fullName);
 
 	return (
 		<div
