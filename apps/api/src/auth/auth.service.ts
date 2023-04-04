@@ -12,6 +12,8 @@ export class AuthService {
 	async authenticate(email: string, password: string): Promise<User> {
 		const user = await this.usersService.findBy({ email });
 
+		console.log('Mati pokażesz Tosię na live???');
+
 		if (!user || !(await bcrypt.compare(password, user.password))) {
 			throw new UnauthorizedException('Invalid email or password');
 		}
