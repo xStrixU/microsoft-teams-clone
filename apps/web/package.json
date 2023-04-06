@@ -31,6 +31,7 @@
 		"shared": "workspace:*",
 		"socket.io-client": "4.6.1",
 		"tailwind-merge": "1.10.0",
+		"tsconfig": "workspace:*",
 		"zod": "3.21.4"
 	},
 	"devDependencies": {
