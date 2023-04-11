@@ -1,8 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-
-import { Input } from '../ui/Inputs/Input/Input';
+import { TextInput } from 'ui';
 
 import SendIcon from '@/assets/icons/send.svg';
 import { useConversationContext } from '@/providers/ConversationProvider';
@@ -33,7 +32,7 @@ export const MessageInput = ({ isNewChat }: MessageInputProps) => {
 
 	return (
 		<form onSubmit={handleSubmit} className="mx-auto mt-auto flex w-full max-w-4xl flex-col">
-			<Input
+			<TextInput
 				placeholder="Type a new message"
 				value={inputValue}
 				onChange={({ target }) => setInputValue(target.value)}

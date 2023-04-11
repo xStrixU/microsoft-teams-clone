@@ -8,6 +8,7 @@ import { AppProviders } from '@/providers/AppProviders';
 import type { ReactNode } from 'react';
 
 import '@/styles/globals.css';
+import 'ui/styles.css';
 
 const notoSans = Noto_Sans({
 	weight: ['400', '500', '600', '700'],

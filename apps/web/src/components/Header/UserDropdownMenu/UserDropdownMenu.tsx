@@ -1,10 +1,9 @@
 'use client';
 
 import { Fragment } from 'react';
+import { DropdownMenu } from 'ui';
 
 import { UserDropdownMenuHeader } from './UserDropdownMenuHeader';
-
-import { DropdownMenu } from '@/components/ui/DropdownMenu/DropdownMenu';
 
 import { useUser } from '@/hooks/useUser';
 
@@ -22,7 +21,7 @@ export const UserDropdownMenu = ({ children }: UserDropdownMenuProps) => {
 	return (
 		<DropdownMenu fullHeight>
 			<DropdownMenu.Button as={Fragment}>{children}</DropdownMenu.Button>
-			<DropdownMenu.Items className="w-64">
+			<DropdownMenu.Items>
 				<UserDropdownMenuHeader user={user} />
 				<DropdownMenu.Divider />
 				<DropdownMenu.Item onClick={() => logout.mutate({})}>Sign out</DropdownMenu.Item>
