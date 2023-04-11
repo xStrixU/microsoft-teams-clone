@@ -1,10 +1,8 @@
 import { useRouter } from 'next/navigation';
+import { Button, Textarea, TextInput } from 'ui';
 import { z } from 'zod';
 
 import { Modal } from '@/components/Modal';
-import { Button } from '@/components/ui/Button/Button';
-import { Input } from '@/components/ui/Inputs/Input/Input';
-import { Textarea } from '@/components/ui/Inputs/Textarea/Textarea';
 
 import { useTeams } from '@/hooks/useTeams';
 import { useZodForm } from '@/hooks/useZodForm';
@@ -22,7 +20,11 @@ const schema = z.object({
 export const CreateTeamModal = (props: CreateTeamModalProps) => {
 	const { createTeam } = useTeams();
 	const router = useRouter();
-	const { onSubmit, register } = useZodForm(schema, data => {
+	const {
+		onSubmit,
+		register,
+		formState: { errors },
+	} = useZodForm(schema, data => {
 		createTeam.mutate(data, {
 			onSuccess: () => {
 				router.push('/teams');
@@ -33,9 +35,13 @@ export const CreateTeamModal = (props: CreateTeamModalProps) => {
 	return (
 		<Modal title="Some quick details about your team" {...props}>
 			<form onSubmit={onSubmit} className="flex flex-col gap-4">
-				<Input label="Team name" {...register('name')} />
-				<Textarea label="Description" {...register('description')} />
-				<Button appearance="primary" type="submit" className="w-fit">
+				<TextInput label="Team name" error={errors.name?.message} {...register('name')} />
+				<Textarea
+					label="Description"
+					error={errors.description?.message}
+					{...register('description')}
+				/>
+				<Button appearance="primary" type="submit">
 					Create
 				</Button>
 			</form>

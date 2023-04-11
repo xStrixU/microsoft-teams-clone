@@ -1,7 +1,8 @@
 'use client';
 
+import { Button, ButtonGroup } from 'ui';
+
 import { ConversationImage } from '@/components/ConversationImage';
-import { Button } from '@/components/ui/Button/Button';
 
 import CallIcon from '@/assets/icons/call.svg';
 import VideoCallIcon from '@/assets/icons/video-call.svg';
@@ -23,20 +24,14 @@ export const ChatHeader = () => {
 				<ConversationImage conversation={activeConversation} />
 				<p className="text-lg font-bold text-neutral-foreground">{conversationName}</p>
 			</div>
-			<div className="flex">
-				<Button
-					size="icon"
-					shape="square"
-					title="No available camera found"
-					disabled
-					className="rounded-l"
-				>
+			<ButtonGroup>
+				<Button size="icon" title="No available camera found" disabled>
 					<VideoCallIcon />
 				</Button>
-				<Button size="icon" shape="square" title="Audio call" className="rounded-r">
+				<Button size="icon" title="Audio call">
 					<CallIcon />
 				</Button>
-			</div>
+			</ButtonGroup>
 		</div>
 	);
 };

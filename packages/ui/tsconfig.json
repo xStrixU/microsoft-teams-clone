@@ -1,0 +1,12 @@
+{
+	"extends": "tsconfig/base.json",
+	"compilerOptions": {
+		"baseUrl": ".",
+		"jsx": "react-jsx",
+		"lib": ["dom", "ES2015"],
+		"moduleResolution": "node",
+		"paths": {
+			"@/*": ["src/*"]
+		}
+	}
+}
