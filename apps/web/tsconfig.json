@@ -22,11 +22,5 @@
 			}
 		]
 	},
-	"include": [
-		"next-env.d.ts",
-		"**/*.ts",
-		"**/*.tsx",
-		".next/types/**/*.ts",
-		"/home/kacper/Documents/Programming/microsoft-teams-clone/apps/web/.next/types/**/*.ts"
-	]
+	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"]
 }
