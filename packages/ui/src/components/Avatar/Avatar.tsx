@@ -23,16 +23,18 @@ const sizes = {
 } as const;
 
 type AvatarProps = Readonly<{
+	shrink?: boolean;
 	size?: keyof typeof sizes;
 	badge?: Omit<ComponentProps<typeof AvatarBadge>, 'size'>;
 }> &
 	({ name: string } | { image: string; alt: string });
 
-export const Avatar = ({ size = 32, badge, ...props }: AvatarProps) => (
+export const Avatar = ({ shrink = true, size = 32, badge, ...props }: AvatarProps) => (
 	<div
 		className={uiTwMerge(
 			'ui-relative ui-flex ui-h-10 ui-w-10 ui-select-none ui-items-center ui-justify-center ui-rounded-full ui-bg-red-200 ui-text-sm ui-font-medium ui-text-red-700',
-			sizes[size]
+			sizes[size],
+			!shrink && 'ui-shrink-0'
 		)}
 	>
 		{'name' in props ? (
