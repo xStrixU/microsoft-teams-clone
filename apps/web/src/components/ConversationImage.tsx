@@ -1,4 +1,4 @@
-import { UserAvatar } from './UserAvatar/UserAvatar';
+import { UserAvatar } from './UserAvatar';
 
 import NewChatIcon from '@/assets/icons/new-chat.svg';
 

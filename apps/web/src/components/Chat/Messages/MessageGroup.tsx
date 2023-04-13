@@ -4,7 +4,7 @@ import moment from 'moment';
 
 import { Message } from './Message';
 
-import { UserAvatar } from '@/components/UserAvatar/UserAvatar';
+import { UserAvatar } from '@/components/UserAvatar';
 
 import { useUser } from '@/hooks/useUser';
 
@@ -21,7 +21,7 @@ export const MessageGroup = ({ messageGroup }: MessageGroupProps) => {
 
 	return (
 		<div className="mx-auto flex w-full max-w-4xl gap-2">
-			{!mine && <UserAvatar user={messageGroup.author} className="shrink-0" />}
+			{!mine && <UserAvatar user={messageGroup.author} shrink={false} />}
 			<ul className="w-full space-y-0.5">
 				{messageGroup.contents.map((content, i) => (
 					<li key={i}>

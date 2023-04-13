@@ -1,8 +1,8 @@
 import { forwardRef } from 'react';
-import { twMerge } from 'tailwind-merge';
 
 import CheckIcon from '@/assets/icons/check.svg';
 import CheckLargeIcon from '@/assets/icons/check-large.svg';
+import { uiTwMerge } from '@/lib/uiTwMerge';
 
 const sizes = {
 	medium: 'ui-w-4 ui-h-4',
@@ -20,7 +20,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
 			<label>
 				<input ref={ref} type="checkbox" className="ui-peer ui-hidden" {...props} />
 				<div
-					className={twMerge(
+					className={uiTwMerge(
 						'ui-flex ui-cursor-pointer ui-items-center ui-justify-center ui-rounded-sm ui-border ui-border-neutral-stroke-accessible-default ui-text-neutral-foreground-inverted peer-checked:ui-border-none peer-checked:ui-bg-brand-default group-hover:peer-checked:ui-bg-brand-hover [&>svg]:ui-hidden peer-checked:[&>svg]:ui-block',
 						sizes[size]
 					)}

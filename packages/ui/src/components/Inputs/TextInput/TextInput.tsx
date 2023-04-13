@@ -1,7 +1,8 @@
 import { forwardRef, useId } from 'react';
-import { twMerge } from 'tailwind-merge';
 
 import { InputAppearance, ROOT_STYLES } from '../InputAppearance';
+
+import { uiTwMerge } from '@/lib/uiTwMerge';
 
 import type { ComponentProps, ReactNode } from 'react';
 
@@ -54,7 +55,7 @@ export const TextInput = forwardRef<HTMLInputElement, InputProps>(
 					id={id}
 					placeholder={placeholder || label}
 					required={required}
-					className={twMerge(ROOT_STYLES, sizes[size])}
+					className={uiTwMerge(ROOT_STYLES, sizes[size])}
 					{...props}
 				/>
 				{contentAfter && (

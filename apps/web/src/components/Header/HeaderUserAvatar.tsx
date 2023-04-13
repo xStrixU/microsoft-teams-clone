@@ -2,7 +2,7 @@
 
 import { forwardRef } from 'react';
 
-import { UserAvatar } from '../UserAvatar/UserAvatar';
+import { UserAvatar } from '../UserAvatar';
 
 import { useUser } from '@/hooks/useUser';
 
@@ -21,7 +21,7 @@ export const HeaderUserAvatar = forwardRef<HTMLButtonElement>((props, ref) => {
 				user={user}
 				badge={{
 					status: 'available',
-					className: 'border-brand-selected dark:border-neutral-background-5',
+					variant: 'brand',
 				}}
 			/>
 		</button>

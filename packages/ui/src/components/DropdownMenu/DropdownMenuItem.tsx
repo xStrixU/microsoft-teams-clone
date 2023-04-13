@@ -1,7 +1,8 @@
 'use client';
 
 import { Menu } from '@headlessui/react';
-import { twMerge } from 'tailwind-merge';
+
+import { uiTwMerge } from '@/lib/uiTwMerge';
 
 import type { ElementType, ReactElement, ReactNode } from 'react';
 
@@ -27,7 +28,7 @@ export const DropdownMenuItem = <TTag extends ElementType = typeof DEFAULT_TAG>(
 		<Menu.Item>
 			{({ active }) => (
 				<Tag
-					className={twMerge(
+					className={uiTwMerge(
 						'ui-flex ui-w-full ui-items-center ui-px-5 ui-py-1.5 ui-text-left ui-text-neutral-foreground-2-default active:ui-bg-zinc-300 dark:ui-active:bg-neutral-700',
 						active && 'ui-bg-zinc-200 ui-text-neutral-foreground-2-action dark:ui-bg-neutral-700'
 					)}

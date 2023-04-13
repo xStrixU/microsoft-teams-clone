@@ -1,7 +1,8 @@
 import { forwardRef, useId } from 'react';
-import { twMerge } from 'tailwind-merge';
 
 import { InputAppearance, ROOT_STYLES } from '../InputAppearance';
+
+import { uiTwMerge } from '@/lib/uiTwMerge';
 
 import type { ComponentProps } from 'react';
 
@@ -32,7 +33,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
 					id={id}
 					placeholder={placeholder || label}
 					required={required}
-					className={twMerge(ROOT_STYLES, 'resize-none', sizes[size])}
+					className={uiTwMerge(ROOT_STYLES, 'resize-none', sizes[size])}
 					{...props}
 				/>
 			</InputAppearance>
