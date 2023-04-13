@@ -1,6 +1,5 @@
-import { twMerge } from 'tailwind-merge';
-
 import ErrorIcon from '@/assets/icons/error.svg';
+import { uiTwMerge } from '@/lib/uiTwMerge';
 
 import type { ReactNode } from 'react';
 
@@ -31,7 +30,7 @@ export const InputAppearance = ({
 	error,
 	children,
 }: InputAppearanceProps) => (
-	<div className={twMerge(sizes[size], fill && 'ui-w-full')}>
+	<div className={uiTwMerge(sizes[size], fill && 'ui-w-full')}>
 		{label && (
 			<label htmlFor={id} className="ui-mb-1 ui-text-neutral-foreground">
 				{label}
@@ -39,10 +38,10 @@ export const InputAppearance = ({
 			</label>
 		)}
 		<div
-			className={twMerge(
+			className={uiTwMerge(
 				'ui-relative ui-flex ui-items-center ui-rounded ui-border ui-border-neutral-stroke-default ui-border-b-neutral-stroke-accessible-default ui-bg-neutral-background-default ui-transition-colors focus-within:ui-border-neutral-stroke-pressed focus-within:ui-border-b-neutral-stroke-accessible-default hover:ui-border-neutral-stroke-hover hover:ui-border-b-neutral-stroke-accessible-default',
 				'after:ui-clip-path-input-underline after:ui-absolute after:-ui-bottom-px after:-ui-left-px after:-ui-right-px after:ui-h-1 after:ui-scale-x-0 after:ui-rounded-b after:ui-border-b-2 after:ui-border-b-brand-default after:ui-transition-transform after:ui-duration-200 focus-within:after:ui-scale-x-100',
-				error && 'ui-border-red-border ui-border-b-red-border'
+				error && 'ui-border-red-border'
 			)}
 		>
 			{children}

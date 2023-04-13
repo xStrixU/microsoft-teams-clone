@@ -1,5 +1,6 @@
 import './styles/styles.css';
 
+export { Avatar } from './components/Avatar/Avatar';
 export { Button } from './components/Button/Button/Button';
 export { ButtonGroup } from './components/Button/ButtonGroup/ButtonGroup';
 export { Checkbox } from './components/Checkbox/Checkbox';

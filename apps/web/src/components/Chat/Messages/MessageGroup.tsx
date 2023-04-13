@@ -4,7 +4,7 @@ import moment from 'moment';
 
 import { Message } from './Message';
 
-import { UserAvatar } from '@/components/UserAvatar/UserAvatar';
+import { UserAvatar } from '@/components/UserAvatar';
 
 import { useUser } from '@/hooks/useUser';
 

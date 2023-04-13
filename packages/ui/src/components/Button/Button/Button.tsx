@@ -1,4 +1,4 @@
-import { twMerge } from 'tailwind-merge';
+import { uiTwMerge } from '@/lib/uiTwMerge';
 
 import type { ElementType } from 'react';
 
@@ -47,7 +47,7 @@ export const Button = <TTag extends ElementType>({
 
 	return (
 		<Tag
-			className={twMerge(
+			className={uiTwMerge(
 				'ui-flex ui-w-fit ui-items-center ui-justify-center ui-px-5 ui-font-semibold ui-transition-colors disabled:ui-cursor-not-allowed disabled:ui-border-neutral-stroke-disabled disabled:ui-bg-neutral-background-disabled disabled:ui-text-neutral-foreground-disabled',
 				sizes[size],
 				shapes[shape],

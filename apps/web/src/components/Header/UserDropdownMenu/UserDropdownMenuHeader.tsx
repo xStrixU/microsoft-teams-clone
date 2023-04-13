@@ -1,4 +1,4 @@
-import { UserAvatar } from '@/components/UserAvatar/UserAvatar';
+import { UserAvatar } from '@/components/UserAvatar';
 
 import type { User } from '@/types';
 

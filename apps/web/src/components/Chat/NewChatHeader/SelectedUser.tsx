@@ -1,4 +1,4 @@
-import { UserAvatar } from '@/components/UserAvatar/UserAvatar';
+import { UserAvatar } from '@/components/UserAvatar';
 
 import CloseIcon from '@/assets/icons/close.svg';
 import { useConversationContext } from '@/providers/ConversationProvider';

@@ -1,11 +1,12 @@
 'use client';
 
 import { Menu } from '@headlessui/react';
-import { twMerge } from 'tailwind-merge';
 
 import { DropdownMenuDivider } from './DropdownMenuDivider';
 import { DropdownMenuItem } from './DropdownMenuItem';
 import { DropdownMenuItems } from './DropdownMenuItems';
+
+import { uiTwMerge } from '@/lib/uiTwMerge';
 
 import type { ReactNode } from 'react';
 
@@ -22,7 +23,7 @@ export type DropdownMenuType = React.FC<DropdownMenuProps> & {
 };
 
 export const DropdownMenu: DropdownMenuType = ({ fullHeight, children }: DropdownMenuProps) => (
-	<Menu as="div" className={twMerge('ui-relative ui-w-fit', fullHeight && 'ui-h-full')}>
+	<Menu as="div" className={uiTwMerge('ui-relative ui-w-fit', fullHeight && 'ui-h-full')}>
 		{children}
 	</Menu>
 );
