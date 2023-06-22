@@ -3,7 +3,7 @@
 Clone of the Microsoft Teams platform.
 
 ## Live preview
-You can try live preview here: microsoft-teams-clone-xstrixu.vercel.app <br /><br />
+You can try live preview here: https://microsoft-teams-clone.projectcode.pl <br /><br />
 Credentials:
 |          Email         |     Password     |
 | :--------------------: | :--------------: |
